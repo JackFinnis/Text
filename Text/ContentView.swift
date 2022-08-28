@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var text = ""
+    @State var appeared = false
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        TextEditor(text: $text)
+            .font(.monospaced(.system(size: 15))())
+            .frame(width: appeared ? nil : 300, height: appeared ? nil : 200)
+            .task { appeared = true }
     }
 }
