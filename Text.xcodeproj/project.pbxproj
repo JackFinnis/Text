@@ -8,14 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		047E5F8E28BBFB440017267E /* TextApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047E5F8D28BBFB440017267E /* TextApp.swift */; };
-		047E5F9028BBFB440017267E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047E5F8F28BBFB440017267E /* ContentView.swift */; };
 		047E5F9228BBFB450017267E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047E5F9128BBFB450017267E /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		047E5F8A28BBFB440017267E /* Text.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Text.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		047E5F8D28BBFB440017267E /* TextApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextApp.swift; sourceTree = "<group>"; };
-		047E5F8F28BBFB440017267E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		047E5F9128BBFB450017267E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		047E5F9628BBFB450017267E /* Text.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Text.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,7 +49,6 @@
 			isa = PBXGroup;
 			children = (
 				047E5F8D28BBFB440017267E /* TextApp.swift */,
-				047E5F8F28BBFB440017267E /* ContentView.swift */,
 				047E5F9128BBFB450017267E /* Assets.xcassets */,
 				047E5F9628BBFB450017267E /* Text.entitlements */,
 			);
@@ -127,7 +124,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				047E5F9028BBFB440017267E /* ContentView.swift in Sources */,
 				047E5F8E28BBFB440017267E /* TextApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +263,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = JackFinnis.Text;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -294,6 +291,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = JackFinnis.Text;
 				PRODUCT_NAME = "$(TARGET_NAME)";
