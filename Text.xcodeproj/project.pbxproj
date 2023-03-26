@@ -7,19 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		047E5F8E28BBFB440017267E /* TextApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047E5F8D28BBFB440017267E /* TextApp.swift */; };
-		047E5F9228BBFB450017267E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047E5F9128BBFB450017267E /* Assets.xcassets */; };
+		0413DAC52999048500A1624F /* TextApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAC42999048500A1624F /* TextApp.swift */; };
+		0413DAC92999048600A1624F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0413DAC82999048600A1624F /* Assets.xcassets */; };
+		0413DAD2299931B300A1624F /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD1299931B300A1624F /* Int.swift */; };
+		0413DAD4299931BE00A1624F /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD3299931BE00A1624F /* Collection.swift */; };
+		0413DAD8299931F200A1624F /* EKEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD7299931F200A1624F /* EKEventStore.swift */; };
+		0413DADA2999320A00A1624F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD92999320A00A1624F /* RootView.swift */; };
+		0413DADD2999323F00A1624F /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DADC2999323F00A1624F /* EventView.swift */; };
+		0413DADF2999324B00A1624F /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DADE2999324B00A1624F /* TextView.swift */; };
+		0413DAE12999325B00A1624F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAE02999325B00A1624F /* ViewModel.swift */; };
+		04265B7429D0D86600D7B588 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04265B7329D0D86600D7B588 /* Defaults.swift */; };
+		04265B7829D0F5F600D7B588 /* ShakeDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04265B7729D0F5F600D7B588 /* ShakeDetector.swift */; };
+		04265B7A29D0F75100D7B588 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04265B7929D0F75100D7B588 /* Haptics.swift */; };
+		04265B7E29D0FAEA00D7B588 /* EKEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04265B7D29D0FAEA00D7B588 /* EKEvent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		047E5F8A28BBFB440017267E /* Text.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Text.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		047E5F8D28BBFB440017267E /* TextApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextApp.swift; sourceTree = "<group>"; };
-		047E5F9128BBFB450017267E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		047E5F9628BBFB450017267E /* Text.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Text.entitlements; sourceTree = "<group>"; };
+		0413DAC22999048500A1624F /* Text.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Text.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0413DAC42999048500A1624F /* TextApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextApp.swift; sourceTree = "<group>"; };
+		0413DAC82999048600A1624F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0413DAD1299931B300A1624F /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		0413DAD3299931BE00A1624F /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		0413DAD7299931F200A1624F /* EKEventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKEventStore.swift; sourceTree = "<group>"; };
+		0413DAD92999320A00A1624F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		0413DADC2999323F00A1624F /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		0413DADE2999324B00A1624F /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		0413DAE02999325B00A1624F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		04265B7329D0D86600D7B588 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		04265B7729D0F5F600D7B588 /* ShakeDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeDetector.swift; sourceTree = "<group>"; };
+		04265B7929D0F75100D7B588 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
+		04265B7D29D0FAEA00D7B588 /* EKEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKEvent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		047E5F8728BBFB440017267E /* Frameworks */ = {
+		0413DABF2999048500A1624F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -29,10 +50,78 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0413DAC32999048500A1624F /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				0413DAC42999048500A1624F /* TextApp.swift */,
+				04265B7229D0D83300D7B588 /* Views */,
+				04265B7529D0E0DB00D7B588 /* Models */,
+				04265B7129D0D82A00D7B588 /* Helpers */,
+				04265B7029D0D81F00D7B588 /* Resources */,
+				0413DADB2999321D00A1624F /* Extensions */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
+		0413DADB2999321D00A1624F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0413DAD3299931BE00A1624F /* Collection.swift */,
+				04265B7D29D0FAEA00D7B588 /* EKEvent.swift */,
+				0413DAD7299931F200A1624F /* EKEventStore.swift */,
+				0413DAD1299931B300A1624F /* Int.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		04265B7029D0D81F00D7B588 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0413DAC82999048600A1624F /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		04265B7129D0D82A00D7B588 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				04265B7329D0D86600D7B588 /* Defaults.swift */,
+				04265B7929D0F75100D7B588 /* Haptics.swift */,
+				04265B7729D0F5F600D7B588 /* ShakeDetector.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		04265B7229D0D83300D7B588 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0413DAD92999320A00A1624F /* RootView.swift */,
+				0413DADE2999324B00A1624F /* TextView.swift */,
+				04265B7629D0E0E500D7B588 /* Extra */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		04265B7529D0E0DB00D7B588 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0413DAE02999325B00A1624F /* ViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		04265B7629D0E0E500D7B588 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				0413DADC2999323F00A1624F /* EventView.swift */,
+			);
+			path = Extra;
+			sourceTree = "<group>";
+		};
 		047E5F8128BBFB440017267E = {
 			isa = PBXGroup;
 			children = (
-				047E5F8C28BBFB440017267E /* Text */,
+				0413DAC32999048500A1624F /* Text */,
 				047E5F8B28BBFB440017267E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -40,31 +129,21 @@
 		047E5F8B28BBFB440017267E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				047E5F8A28BBFB440017267E /* Text.app */,
+				0413DAC22999048500A1624F /* Text.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		047E5F8C28BBFB440017267E /* Text */ = {
-			isa = PBXGroup;
-			children = (
-				047E5F8D28BBFB440017267E /* TextApp.swift */,
-				047E5F9128BBFB450017267E /* Assets.xcassets */,
-				047E5F9628BBFB450017267E /* Text.entitlements */,
-			);
-			path = Text;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		047E5F8928BBFB440017267E /* Text */ = {
+		0413DAC12999048500A1624F /* Text */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 047E5F9928BBFB450017267E /* Build configuration list for PBXNativeTarget "Text" */;
+			buildConfigurationList = 0413DACE2999048600A1624F /* Build configuration list for PBXNativeTarget "Text" */;
 			buildPhases = (
-				047E5F8628BBFB440017267E /* Sources */,
-				047E5F8728BBFB440017267E /* Frameworks */,
-				047E5F8828BBFB440017267E /* Resources */,
+				0413DABE2999048500A1624F /* Sources */,
+				0413DABF2999048500A1624F /* Frameworks */,
+				0413DAC02999048500A1624F /* Resources */,
 			);
 			buildRules = (
 			);
@@ -72,7 +151,7 @@
 			);
 			name = Text;
 			productName = Text;
-			productReference = 047E5F8A28BBFB440017267E /* Text.app */;
+			productReference = 0413DAC22999048500A1624F /* Text.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -82,11 +161,11 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
-					047E5F8928BBFB440017267E = {
-						CreatedOnToolsVersion = 13.4.1;
+					0413DAC12999048500A1624F = {
+						CreatedOnToolsVersion = 14.1;
 					};
 				};
 			};
@@ -103,34 +182,131 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				047E5F8928BBFB440017267E /* Text */,
+				0413DAC12999048500A1624F /* Text */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		047E5F8828BBFB440017267E /* Resources */ = {
+		0413DAC02999048500A1624F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				047E5F9228BBFB450017267E /* Assets.xcassets in Resources */,
+				0413DAC92999048600A1624F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		047E5F8628BBFB440017267E /* Sources */ = {
+		0413DABE2999048500A1624F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				047E5F8E28BBFB440017267E /* TextApp.swift in Sources */,
+				04265B7A29D0F75100D7B588 /* Haptics.swift in Sources */,
+				0413DAD4299931BE00A1624F /* Collection.swift in Sources */,
+				04265B7E29D0FAEA00D7B588 /* EKEvent.swift in Sources */,
+				0413DAE12999325B00A1624F /* ViewModel.swift in Sources */,
+				0413DADF2999324B00A1624F /* TextView.swift in Sources */,
+				04265B7829D0F5F600D7B588 /* ShakeDetector.swift in Sources */,
+				0413DADD2999323F00A1624F /* EventView.swift in Sources */,
+				0413DAC52999048500A1624F /* TextApp.swift in Sources */,
+				0413DADA2999320A00A1624F /* RootView.swift in Sources */,
+				04265B7429D0D86600D7B588 /* Defaults.swift in Sources */,
+				0413DAD2299931B300A1624F /* Int.swift in Sources */,
+				0413DAD8299931F200A1624F /* EKEventStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		0413DACF2999048600A1624F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 4CQW4CFFYT;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "Add events to your calendar";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Detect your current location";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackfinnis.Text;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0413DAD02999048600A1624F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 4CQW4CFFYT;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "Add events to your calendar";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Detect your current location";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackfinnis.Text;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		047E5F9728BBFB450017267E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -181,7 +357,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -235,7 +412,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -244,79 +422,23 @@
 			};
 			name = Release;
 		};
-		047E5F9A28BBFB450017267E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Text/Text.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 4CQW4CFFYT;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = JackFinnis.Text;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		047E5F9B28BBFB450017267E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Text/Text.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 4CQW4CFFYT;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = JackFinnis.Text;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0413DACE2999048600A1624F /* Build configuration list for PBXNativeTarget "Text" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0413DACF2999048600A1624F /* Debug */,
+				0413DAD02999048600A1624F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		047E5F8528BBFB440017267E /* Build configuration list for PBXProject "Text" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				047E5F9728BBFB450017267E /* Debug */,
 				047E5F9828BBFB450017267E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		047E5F9928BBFB450017267E /* Build configuration list for PBXNativeTarget "Text" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				047E5F9A28BBFB450017267E /* Debug */,
-				047E5F9B28BBFB450017267E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
