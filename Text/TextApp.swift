@@ -13,8 +13,5 @@ struct TextApp: App {
         WindowGroup {
             RootView()
         }
-        #if os(macOS)
-        .defaultSize(width: 300, height: 200)
-        #endif
     }
 }
