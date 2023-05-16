@@ -15,6 +15,9 @@ struct TextView: UIViewRepresentable {
         textView.delegate = vm
         vm.textView = textView
         
+        textView.text = vm.text
+        vm.addAttributes()
+        
         textView.textContainerInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         textView.textContainer.lineFragmentPadding = .zero
         textView.isUserInteractionEnabled = true
