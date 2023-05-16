@@ -115,5 +115,6 @@ struct RootView: View {
             }
         }
         .environmentObject(vm)
+        .navigationViewStyle(.stack)
     }
 }
