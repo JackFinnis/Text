@@ -14,9 +14,14 @@ import Contacts
 class ViewModel: NSObject, ObservableObject {
     // MARK: - Properties
     // Text
-    let defaultAttributes: [NSAttributedString.Key: Any] = [.foregroundColor : UIColor.label, .font : UIFont.systemFont(ofSize: UIFont.buttonFontSize)]
-    @Published var previousTexts = [String]()
-    @Published var text = "" { didSet {
+    let plainAttributes: [NSAttributedString.Key: Any] = [
+        .foregroundColor: UIColor.label,
+        .font: UIFont.systemFont(ofSize: UIFont.buttonFontSize)
+    ]
+    @Storage("previousTexts") var previousTexts = [String]() { didSet {
+        objectWillChange.send()
+    }}
+    @Storage("text") var text = "" { didSet {
         textView?.text = text
         previousTexts.append(oldValue)
     }}
@@ -38,6 +43,16 @@ class ViewModel: NSObject, ObservableObject {
     }
     
     // MARK: - Functions
+    @objc
+    func clearText() {
+        text = ""
+    }
+    
+    @objc
+    func stopEditing() {
+        textView?.resignFirstResponder()
+    }
+    
     func detectData() {
         let types: NSTextCheckingResult.CheckingType = [.address, .date, .link, .phoneNumber]
         let detector = try? NSDataDetector(types: types.rawValue)
@@ -48,6 +63,12 @@ class ViewModel: NSObject, ObservableObject {
         guard let text = previousTexts.popLast() else { return }
         self.text = text
         textView?.becomeFirstResponder()
+    }
+    
+    func openSettings() {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(url)
+        }
     }
     
     @objc
@@ -92,7 +113,7 @@ class ViewModel: NSObject, ObservableObject {
     
     func addAttributes() {
         detectData()
-        let attributes = NSMutableAttributedString(string: text, attributes: defaultAttributes)
+        let attributes = NSMutableAttributedString(string: text, attributes: plainAttributes)
         for result in results {
             attributes.addAttribute(.foregroundColor, value: UIColor(.accentColor), range: result.range)
             attributes.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: result.range)
@@ -112,7 +133,7 @@ extension ViewModel: UITextViewDelegate {
         DispatchQueue.main.async {
             self.editing = true
         }
-        textView.attributedText = NSAttributedString(string: text, attributes: defaultAttributes)
+        textView.attributedText = NSAttributedString(string: text, attributes: plainAttributes)
         textView.removeGestureRecognizer(tapRecogniser)
     }
     

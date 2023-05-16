@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TextView: UIViewRepresentable {
-    @ObservedObject var vm: ViewModel
+    @EnvironmentObject var vm: ViewModel
     
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
@@ -21,6 +21,14 @@ struct TextView: UIViewRepresentable {
         textView.isScrollEnabled = true
         textView.isEditable = true
         textView.isSelectable = true
+        
+        let toolbar = UIToolbar()
+        let clearButton = UIBarButtonItem(title: "Clear", style: .plain, target: vm, action: #selector(ViewModel.clearText))
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let dismissButton = UIBarButtonItem(title: "Done", style: .done, target: vm, action: #selector(ViewModel.stopEditing))
+        toolbar.items = [clearButton, spacer, dismissButton]
+        toolbar.sizeToFit()
+        textView.inputAccessoryView = toolbar
         
         return textView
     }

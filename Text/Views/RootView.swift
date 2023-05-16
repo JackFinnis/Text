@@ -6,14 +6,18 @@
 //
 
 import SwiftUI
+import MessageUI
 
 struct RootView: View {
+    @Environment(\.scenePhase) var scenePhase
     @StateObject var vm = ViewModel()
     @State var showUndoAlert = false
+    @State var showShareSheet = false
+    @State var showEmailSheet = false
     
     var body: some View {
         NavigationView {
-            TextView(vm: vm)
+            TextView()
                 .overlay(alignment: .topLeading) {
                     if vm.text.isEmpty {
                         Text("Enter text here")
@@ -23,7 +27,7 @@ struct RootView: View {
                     }
                 }
                 .overlay(alignment: .bottom) {
-                    if !vm.editing {
+                    if vm.text.isNotEmpty && !vm.editing {
                         Text(vm.words.formatted(singular: "word") + " • " + vm.text.count.formatted(singular: "char"))
                             .font(.subheadline)
                             .foregroundColor(.secondary)
@@ -34,19 +38,52 @@ struct RootView: View {
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         if vm.text.isNotEmpty {
-                            Button("Clear") {
-                                vm.text = ""
-                                vm.textView?.becomeFirstResponder()
+                            Button("Copy") {
+                                UIPasteboard.general.string = vm.text
                             }
                         }
                     }
-                    ToolbarItem(placement: .primaryAction) {
-                        if vm.editing {
-                            Button("Done") {
-                                vm.textView?.resignFirstResponder()
+                    ToolbarItem(placement: .principal) {
+                        Menu {
+                            Button {
+                                showShareSheet.toggle()
+                            } label: {
+                                Label("Share \(Constants.name)", systemImage: "square.and.arrow.up")
                             }
-                            .font(.body.bold())
-                        } else if UIPasteboard.general.hasStrings {
+                            Button {
+                                Store.requestRating()
+                            } label: {
+                                Label("Rate \(Constants.name)", systemImage: "star")
+                            }
+                            Button {
+                                Store.writeReview()
+                            } label: {
+                                Label("Write a Review", systemImage: "quote.bubble")
+                            }
+                            if MFMailComposeViewController.canSendMail() {
+                                Button {
+                                    showEmailSheet.toggle()
+                                } label: {
+                                    Label("Send us Feedback", systemImage: "envelope")
+                                }
+                            } else if let url = Emails.mailtoUrl(subject: "\(Constants.name) Feedback"), UIApplication.shared.canOpenURL(url) {
+                                Button {
+                                    UIApplication.shared.open(url)
+                                } label: {
+                                    Label("Send us Feedback", systemImage: "envelope")
+                                }
+                            }
+                        } label: {
+                            HStack {
+                                Text(Constants.name)
+                                    .font(.headline)
+                                MenuChevron()
+                            }
+                            .foregroundColor(.primary)
+                        }
+                    }
+                    ToolbarItem(placement: .primaryAction) {
+                        if UIPasteboard.general.hasStrings {
                             Button("Paste") {
                                 vm.text = UIPasteboard.general.string ?? ""
                                 vm.addAttributes()
@@ -55,6 +92,8 @@ struct RootView: View {
                     }
                 }
         }
+        .shareSheet(url: Constants.appUrl, showsSharedAlert: true, isPresented: $showShareSheet)
+        .emailSheet(recipient: Constants.email, subject: "\(Constants.name) Feedback", isPresented: $showEmailSheet)
         .sheet(item: $vm.event) { event in
             EventView(event: event)
         }
@@ -70,5 +109,11 @@ struct RootView: View {
                 vm.undoEdit()
             }
         }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active {
+                vm.objectWillChange.send()
+            }
+        }
+        .environmentObject(vm)
     }
 }

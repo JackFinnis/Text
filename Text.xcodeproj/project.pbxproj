@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0402C65F2A13A31100238C51 /* MenuChevron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C65E2A13A31100238C51 /* MenuChevron.swift */; };
+		0402C6612A13A39E00238C51 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6602A13A39E00238C51 /* Storage.swift */; };
+		0402C6632A13A3AC00238C51 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6622A13A3AC00238C51 /* Store.swift */; };
+		0402C6652A13A3D700238C51 /* Emails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6642A13A3D700238C51 /* Emails.swift */; };
+		0402C6672A13A3EC00238C51 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6662A13A3EC00238C51 /* ShareView.swift */; };
+		0402C6692A13A40700238C51 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6682A13A40700238C51 /* EmailView.swift */; };
+		0402C66B2A13A48700238C51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C66A2A13A48700238C51 /* Constants.swift */; };
 		0413DAC52999048500A1624F /* TextApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAC42999048500A1624F /* TextApp.swift */; };
 		0413DAC92999048600A1624F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0413DAC82999048600A1624F /* Assets.xcassets */; };
 		0413DAD2299931B300A1624F /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD1299931B300A1624F /* Int.swift */; };
@@ -23,6 +30,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0402C65E2A13A31100238C51 /* MenuChevron.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuChevron.swift; sourceTree = "<group>"; };
+		0402C6602A13A39E00238C51 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		0402C6622A13A3AC00238C51 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		0402C6642A13A3D700238C51 /* Emails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emails.swift; sourceTree = "<group>"; };
+		0402C6662A13A3EC00238C51 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		0402C6682A13A40700238C51 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
+		0402C66A2A13A48700238C51 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0413DAC22999048500A1624F /* Text.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Text.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0413DAC42999048500A1624F /* TextApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextApp.swift; sourceTree = "<group>"; };
 		0413DAC82999048600A1624F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,9 +99,13 @@
 		04265B7129D0D82A00D7B588 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				0402C66A2A13A48700238C51 /* Constants.swift */,
 				04265B7329D0D86600D7B588 /* Defaults.swift */,
+				0402C6642A13A3D700238C51 /* Emails.swift */,
 				04265B7929D0F75100D7B588 /* Haptics.swift */,
 				04265B7729D0F5F600D7B588 /* ShakeDetector.swift */,
+				0402C6602A13A39E00238C51 /* Storage.swift */,
+				0402C6622A13A3AC00238C51 /* Store.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -113,7 +131,10 @@
 		04265B7629D0E0E500D7B588 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				0402C6682A13A40700238C51 /* EmailView.swift */,
 				0413DADC2999323F00A1624F /* EventView.swift */,
+				0402C65E2A13A31100238C51 /* MenuChevron.swift */,
+				0402C6662A13A3EC00238C51 /* ShareView.swift */,
 			);
 			path = Extra;
 			sourceTree = "<group>";
@@ -203,12 +224,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0402C6632A13A3AC00238C51 /* Store.swift in Sources */,
+				0402C66B2A13A48700238C51 /* Constants.swift in Sources */,
+				0402C65F2A13A31100238C51 /* MenuChevron.swift in Sources */,
+				0402C6652A13A3D700238C51 /* Emails.swift in Sources */,
+				0402C6612A13A39E00238C51 /* Storage.swift in Sources */,
 				04265B7A29D0F75100D7B588 /* Haptics.swift in Sources */,
 				0413DAD4299931BE00A1624F /* Collection.swift in Sources */,
+				0402C6672A13A3EC00238C51 /* ShareView.swift in Sources */,
 				04265B7E29D0FAEA00D7B588 /* EKEvent.swift in Sources */,
 				0413DAE12999325B00A1624F /* ViewModel.swift in Sources */,
 				0413DADF2999324B00A1624F /* TextView.swift in Sources */,
 				04265B7829D0F5F600D7B588 /* ShakeDetector.swift in Sources */,
+				0402C6692A13A40700238C51 /* EmailView.swift in Sources */,
 				0413DADD2999323F00A1624F /* EventView.swift in Sources */,
 				0413DAC52999048500A1624F /* TextApp.swift in Sources */,
 				0413DADA2999320A00A1624F /* RootView.swift in Sources */,
@@ -235,6 +263,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Notepad;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "Add events to your calendar";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Detect your current location";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -278,6 +307,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Notepad;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "Add events to your calendar";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Detect your current location";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
