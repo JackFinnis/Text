@@ -24,7 +24,7 @@ struct EmailView: UIViewControllerRepresentable {
         vc.setToRecipients([recipient])
         return vc
     }
-
+    
     func updateUIViewController(_ vc: MFMailComposeViewController, context: Context) {}
     
     class Coordinator: NSObject, MFMailComposeViewControllerDelegate {

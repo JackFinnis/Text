@@ -9,7 +9,7 @@ import SwiftUI
 import EventKitUI
 
 struct EventView: UIViewControllerRepresentable {
-    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var vm: ViewModel
     
     let event: EKEvent
     
@@ -25,19 +25,27 @@ struct EventView: UIViewControllerRepresentable {
 
         return vc
     }
-
-    func updateUIViewController(_ uiViewController: EKEventEditViewController, context: Context) {}
-
+    
+    func updateUIViewController(_ vc: EKEventEditViewController, context: Context) {}
+    
     class Coordinator: NSObject, EKEventEditViewDelegate {
         let parent: EventView
 
         init(_ parent: EventView) {
             self.parent = parent
         }
-
-        func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
-            try? EKEventStore.shared.save(parent.event, span: .thisEvent)
-            parent.dismiss()
+        
+        @MainActor
+        func eventEditViewController(_ vc: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+            if action == .saved {
+                do {
+                    try EKEventStore.shared.save(parent.event, span: .thisEvent)
+                    parent.vm.alert = .addEventSuccess
+                } catch {
+                    parent.vm.alert = .addEventError
+                }
+            }
+            vc.dismiss(animated: true)
         }
     }
 }

@@ -12,7 +12,6 @@ struct RootView: View {
     @Environment(\.scenePhase) var scenePhase
     @StateObject var vm = ViewModel()
     @State var showUndoAlert = false
-    @State var showShareSheet = false
     @State var showEmailSheet = false
     
     var body: some View {
@@ -46,7 +45,7 @@ struct RootView: View {
                     ToolbarItem(placement: .principal) {
                         Menu {
                             Button {
-                                showShareSheet.toggle()
+                                vm.shareItems = [Constants.appUrl]
                             } label: {
                                 Label("Share \(Constants.name)", systemImage: "square.and.arrow.up")
                             }
@@ -92,7 +91,7 @@ struct RootView: View {
                     }
                 }
         }
-        .shareSheet(url: Constants.appUrl, showsSharedAlert: true, isPresented: $showShareSheet)
+        .shareSheet(items: vm.shareItems, isPresented: $vm.showShareSheet)
         .emailSheet(recipient: Constants.email, subject: "\(Constants.name) Feedback", isPresented: $showEmailSheet)
         .sheet(item: $vm.event) { event in
             EventView(event: event)

@@ -10,11 +10,8 @@ import EventKit
 
 extension EKEvent: Identifiable {
     public var id: UUID { UUID() }
-    
-    convenience init(date: Date, duration: Double, timeZone: TimeZone) {
-        self.init(eventStore: .shared)
-        self.timeZone = timeZone
-        self.startDate = date
-        self.endDate = date.addingTimeInterval(duration)
-    }
+}
+
+extension EKEventStore {
+    static let shared = EKEventStore()
 }

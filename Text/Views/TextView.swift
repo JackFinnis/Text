@@ -19,7 +19,7 @@ struct TextView: UIViewRepresentable {
         vm.addAttributes()
         
         textView.textContainerInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-        textView.textContainer.lineFragmentPadding = .zero
+        textView.textContainer.lineFragmentPadding = 0
         textView.isUserInteractionEnabled = true
         textView.isScrollEnabled = true
         textView.isEditable = true
@@ -32,6 +32,8 @@ struct TextView: UIViewRepresentable {
         toolbar.items = [clearButton, spacer, dismissButton]
         toolbar.sizeToFit()
         textView.inputAccessoryView = toolbar
+        
+        textView.addInteraction(UIContextMenuInteraction(delegate: vm))
         
         return textView
     }

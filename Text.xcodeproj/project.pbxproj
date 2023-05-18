@@ -14,11 +14,12 @@
 		0402C6672A13A3EC00238C51 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6662A13A3EC00238C51 /* ShareView.swift */; };
 		0402C6692A13A40700238C51 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6682A13A40700238C51 /* EmailView.swift */; };
 		0402C66B2A13A48700238C51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C66A2A13A48700238C51 /* Constants.swift */; };
+		0402C6A12A1629D000238C51 /* TextAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6A02A1629D000238C51 /* TextAlert.swift */; };
+		0402C6A32A162DE100238C51 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6A22A162DE100238C51 /* ContactView.swift */; };
 		0413DAC52999048500A1624F /* TextApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAC42999048500A1624F /* TextApp.swift */; };
 		0413DAC92999048600A1624F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0413DAC82999048600A1624F /* Assets.xcassets */; };
 		0413DAD2299931B300A1624F /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD1299931B300A1624F /* Int.swift */; };
 		0413DAD4299931BE00A1624F /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD3299931BE00A1624F /* Collection.swift */; };
-		0413DAD8299931F200A1624F /* EKEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD7299931F200A1624F /* EKEventStore.swift */; };
 		0413DADA2999320A00A1624F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD92999320A00A1624F /* RootView.swift */; };
 		0413DADD2999323F00A1624F /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DADC2999323F00A1624F /* EventView.swift */; };
 		0413DADF2999324B00A1624F /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DADE2999324B00A1624F /* TextView.swift */; };
@@ -37,12 +38,13 @@
 		0402C6662A13A3EC00238C51 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		0402C6682A13A40700238C51 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		0402C66A2A13A48700238C51 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0402C6A02A1629D000238C51 /* TextAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlert.swift; sourceTree = "<group>"; };
+		0402C6A22A162DE100238C51 /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
 		0413DAC22999048500A1624F /* Text.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Text.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0413DAC42999048500A1624F /* TextApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextApp.swift; sourceTree = "<group>"; };
 		0413DAC82999048600A1624F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0413DAD1299931B300A1624F /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		0413DAD3299931BE00A1624F /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
-		0413DAD7299931F200A1624F /* EKEventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKEventStore.swift; sourceTree = "<group>"; };
 		0413DAD92999320A00A1624F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		0413DADC2999323F00A1624F /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		0413DADE2999324B00A1624F /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
@@ -82,7 +84,6 @@
 			children = (
 				0413DAD3299931BE00A1624F /* Collection.swift */,
 				04265B7D29D0FAEA00D7B588 /* EKEvent.swift */,
-				0413DAD7299931F200A1624F /* EKEventStore.swift */,
 				0413DAD1299931B300A1624F /* Int.swift */,
 			);
 			path = Extensions;
@@ -124,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				0413DAE02999325B00A1624F /* ViewModel.swift */,
+				0402C6A02A1629D000238C51 /* TextAlert.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -131,6 +133,7 @@
 		04265B7629D0E0E500D7B588 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				0402C6A22A162DE100238C51 /* ContactView.swift */,
 				0402C6682A13A40700238C51 /* EmailView.swift */,
 				0413DADC2999323F00A1624F /* EventView.swift */,
 				0402C65E2A13A31100238C51 /* MenuChevron.swift */,
@@ -227,6 +230,7 @@
 				0402C6632A13A3AC00238C51 /* Store.swift in Sources */,
 				0402C66B2A13A48700238C51 /* Constants.swift in Sources */,
 				0402C65F2A13A31100238C51 /* MenuChevron.swift in Sources */,
+				0402C6A32A162DE100238C51 /* ContactView.swift in Sources */,
 				0402C6652A13A3D700238C51 /* Emails.swift in Sources */,
 				0402C6612A13A39E00238C51 /* Storage.swift in Sources */,
 				04265B7A29D0F75100D7B588 /* Haptics.swift in Sources */,
@@ -235,6 +239,7 @@
 				04265B7E29D0FAEA00D7B588 /* EKEvent.swift in Sources */,
 				0413DAE12999325B00A1624F /* ViewModel.swift in Sources */,
 				0413DADF2999324B00A1624F /* TextView.swift in Sources */,
+				0402C6A12A1629D000238C51 /* TextAlert.swift in Sources */,
 				04265B7829D0F5F600D7B588 /* ShakeDetector.swift in Sources */,
 				0402C6692A13A40700238C51 /* EmailView.swift in Sources */,
 				0413DADD2999323F00A1624F /* EventView.swift in Sources */,
@@ -242,7 +247,6 @@
 				0413DADA2999320A00A1624F /* RootView.swift in Sources */,
 				04265B7429D0D86600D7B588 /* Defaults.swift in Sources */,
 				0413DAD2299931B300A1624F /* Int.swift in Sources */,
-				0413DAD8299931F200A1624F /* EKEventStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
