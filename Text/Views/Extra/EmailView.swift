@@ -63,8 +63,10 @@ struct EmailModifier: ViewModifier {
                     switch result {
                     case .sent:
                         showEmailSent = true
+                        Haptics.success()
                     case .failed:
                         showEmailNotSent = true
+                        Haptics.error()
                     default:
                         break
                     }

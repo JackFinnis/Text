@@ -12,39 +12,26 @@ import MapKit
 struct ContactView: UIViewControllerRepresentable {
     @EnvironmentObject var vm: ViewModel
     
-    func makeCoordinator() -> Coordinator {
-        Coordinator(parent: self)
-    }
-    
-    func makeUIViewController(context: Context) -> CNContactViewController {
+    func makeUIViewController(context: Context) -> UINavigationController {
         let contact = CNMutableContact()
         if let address = vm.mapItem?.placemark.postalAddress {
             contact.postalAddresses = [CNLabeledValue(label: CNLabelHome, value: address)]
         }
-        if let phoneNumber = vm.phoneNumber {
-            contact.phoneNumbers = [CNLabeledValue(label: CNLabelPhoneNumberMain, value: CNPhoneNumber(stringValue: phoneNumber))]
+        if let number = vm.phoneNumber {
+            contact.phoneNumbers = [CNLabeledValue(label: CNLabelPhoneNumberMain, value: CNPhoneNumber(stringValue: number))]
+        }
+        if let email = vm.email {
+            contact.emailAddresses = [CNLabeledValue(label: CNLabelHome, value: email as NSString)]
         }
         
-        let vc = CNContactViewController(forNewContact: contact)
-        vc.delegate = context.coordinator
+        let contactVC = CNContactViewController(forUnknownContact: contact)
+        contactVC.contactStore = .shared
+        contactVC.navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .done, primaryAction: UIAction { _ in
+            contactVC.dismiss(animated: true)
+        })
         
-        return vc
+        return UINavigationController(rootViewController: contactVC)
     }
     
-    func updateUIViewController(_ vc: CNContactViewController, context: Context) {}
-    
-    class Coordinator: NSObject, CNContactViewControllerDelegate {
-        var parent: ContactView
-
-        init(parent: ContactView) {
-            self.parent = parent
-        }
-        
-        @MainActor
-        func contactViewController(_ viewController: CNContactViewController, didCompleteWith contact: CNContact?) {
-            if contact != nil {
-                parent.vm.alert = .addContactSuccess
-            }
-        }
-    }
+    func updateUIViewController(_ vc: UINavigationController, context: Context) {}
 }

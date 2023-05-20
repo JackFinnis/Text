@@ -13,7 +13,5 @@ enum TextAlert {
     case addEventError
     case addEventSuccess
     case shareAddressUrlError
-    case addToReadingListError
-    case addToReadingListSuccess
-    case addContactSuccess
+    case contactsAuthDenied
 }

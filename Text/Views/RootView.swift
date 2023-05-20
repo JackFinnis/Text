@@ -39,6 +39,7 @@ struct RootView: View {
                         if vm.text.isNotEmpty {
                             Button("Copy") {
                                 UIPasteboard.general.string = vm.text
+                                Haptics.tap()
                             }
                         }
                     }
@@ -85,7 +86,9 @@ struct RootView: View {
                         if UIPasteboard.general.hasStrings {
                             Button("Paste") {
                                 vm.text = UIPasteboard.general.string ?? ""
-                                vm.addAttributes()
+                                if !vm.editing {
+                                    vm.addAttributes()
+                                }
                             }
                         }
                     }
@@ -95,6 +98,19 @@ struct RootView: View {
         .emailSheet(recipient: Constants.email, subject: "\(Constants.name) Feedback", isPresented: $showEmailSheet)
         .sheet(item: $vm.event) { event in
             EventView(event: event)
+        }
+        .sheet(isPresented: $vm.showContactView) {
+            ContactView()
+//            NavigationView {
+//                ContactView()
+//                    .toolbar {
+//                        ToolbarItem(placement: .cancellationAction) {
+//                            Button("Done") {
+//                                print("hi")
+//                            }
+//                        }
+//                    }
+//            }
         }
         .onShake {
             if vm.previousTexts.isNotEmpty {
@@ -113,7 +129,7 @@ struct RootView: View {
                 vm.objectWillChange.send()
             }
         }
-        .environmentObject(vm)
         .navigationViewStyle(.stack)
+        .environmentObject(vm)
     }
 }

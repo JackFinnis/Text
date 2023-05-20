@@ -9,8 +9,8 @@ import UIKit
 import EventKitUI
 import MapKit
 import Contacts
+import SwiftUI
 import WebKit
-import SafariServices
 
 @MainActor
 class ViewModel: NSObject, ObservableObject {
@@ -51,6 +51,9 @@ class ViewModel: NSObject, ObservableObject {
         showContactView = true
     }}
     var phoneNumber: String? { didSet {
+        showContactView = true
+    }}
+    var email: String? { didSet {
         showContactView = true
     }}
     
@@ -122,6 +125,16 @@ class ViewModel: NSObject, ObservableObject {
             DispatchQueue.main.async {
                 self.event = event
             }
+        }
+    }
+    
+    func requestContactsAuth(completion: @escaping () -> Void) {
+        CNContactStore.shared.requestAccess(for: .contacts) { success, error in
+            guard success else {
+                self.alert = .contactsAuthDenied
+                return
+            }
+            completion()
         }
     }
     
@@ -208,22 +221,23 @@ extension ViewModel: UIContextMenuInteractionDelegate {
                 }
             })
             children.append(UIAction(title: "Add to Contacts", image: UIImage(systemName: "person.crop.circle.badge.plus")) { action in
-                self.getMapItem(result: selectedResult) { mapItem in
-                    self.mapItem = mapItem
+                self.requestContactsAuth {
+                    self.getMapItem(result: selectedResult) { mapItem in
+                        self.mapItem = mapItem
+                    }
                 }
             })
             children.append(UIAction(title: "Copy Address", image: UIImage(systemName: "doc.on.doc")) { action in
                 UIPasteboard.general.string = title
+                Haptics.tap()
             })
             children.append(UIAction(title: "Share...", image: UIImage(systemName: "square.and.arrow.up")) { action in
-                self.getMapItem(result: selectedResult) { mapItem in
-                    let coord = mapItem.placemark.coordinate
-                    guard let url = URL(string: "https://maps.apple.com/?ll=\(coord.latitude),\(coord.longitude)") else {
-                        self.alert = .shareAddressUrlError
-                        return
-                    }
-                    self.shareItems = [url]
+                guard let encodedAddress = title.urlEncoding,
+                      let url = URL(string: "https://maps.apple.com/?address=\(encodedAddress)") else {
+                    self.alert = .shareAddressUrlError
+                    return
                 }
+                self.shareItems = [url]
             })
         case .date:
             children.append(UIAction(title: "Create Event", image: UIImage(systemName: "calendar.badge.plus")) { action in
@@ -231,29 +245,38 @@ extension ViewModel: UIContextMenuInteractionDelegate {
             })
             children.append(UIAction(title: "Copy Event", image: UIImage(systemName: "doc.on.doc")) { action in
                 UIPasteboard.general.string = title
+                Haptics.tap()
             })
         case .link:
             guard let url = selectedResult.url else { return nil }
-            title = url.absoluteString
-            children.append(UIAction(title: "Open Link", image: UIImage(systemName: "safari")) { action in
-                UIApplication.shared.open(url)
-            })
-            if SSReadingList.supportsURL(url) {
-                children.append(UIAction(title: "Add to Reading List", image: UIImage(systemName: "eyeglasses")) { action in
-                    do {
-                        try SSReadingList.default()?.addItem(with: url, title: nil, previewText: nil)
-                        self.alert = .addToReadingListSuccess
-                    } catch {
-                        self.alert = .addToReadingListError
+            if url.isMailto {
+                guard let email = url.email else { return nil }
+                title = email
+                children.append(UIAction(title: "New Mail Message", image: UIImage(systemName: "envelope")) { action in
+                    UIApplication.shared.open(url)
+                })
+                children.append(UIAction(title: "Add to Contacts", image: UIImage(systemName: "person.crop.circle.badge.plus")) { action in
+                    self.requestContactsAuth {
+                        self.email = email
                     }
                 })
+                children.append(UIAction(title: "Copy Email", image: UIImage(systemName: "doc.on.doc")) { action in
+                    UIPasteboard.general.string = email
+                    Haptics.tap()
+                })
+            } else {
+                title = url.absoluteString
+                children.append(UIAction(title: "Open Link", image: UIImage(systemName: "safari")) { action in
+                    UIApplication.shared.open(url)
+                })
+                children.append(UIAction(title: "Copy Link", image: UIImage(systemName: "doc.on.doc")) { action in
+                    UIPasteboard.general.url = url
+                    Haptics.tap()
+                })
+                children.append(UIAction(title: "Share...", image: UIImage(systemName: "square.and.arrow.up")) { action in
+                    self.shareItems = [url]
+                })
             }
-            children.append(UIAction(title: "Copy Link", image: UIImage(systemName: "doc.on.doc")) { action in
-                UIPasteboard.general.url = url
-            })
-            children.append(UIAction(title: "Share...", image: UIImage(systemName: "square.and.arrow.up")) { action in
-                self.shareItems = [url]
-            })
         case .phoneNumber:
             guard let number = selectedResult.phoneNumber else { return nil }
             title = number
@@ -262,10 +285,13 @@ extension ViewModel: UIContextMenuInteractionDelegate {
                 UIApplication.shared.open(url)
             })
             children.append(UIAction(title: "Add to Contacts", image: UIImage(systemName: "person.crop.circle.badge.plus")) { action in
-                self.phoneNumber = number
+                self.requestContactsAuth {
+                    self.phoneNumber = number
+                }
             })
             children.append(UIAction(title: "Copy Number", image: UIImage(systemName: "doc.on.doc")) { action in
                 UIPasteboard.general.string = number
+                Haptics.tap()
             })
         default:
             return nil
@@ -277,21 +303,34 @@ extension ViewModel: UIContextMenuInteractionDelegate {
     
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let selectedResult, let textView else { return nil }
-        let rect = textView.layoutManager.boundingRect(forGlyphRange: selectedResult.range, in: textView.textContainer)
-        let target = UIPreviewTarget(container: textView, center: CGPoint(x: rect.midX, y: rect.midY))
         
-        let preview: UIView
+        var preview = UIView()
         switch selectedResult.resultType {
         case .link:
-            guard let url = selectedResult.url else { fallthrough }
+            guard let url = selectedResult.url,
+                  url.isWebsite
+            else { break }
+            
             let size = CGSize(width: 300, height: 350)
             let webView = WKWebView(frame: CGRect(origin: .zero, size: size))
+            webView.isOpaque = false
+            webView.navigationDelegate = self
             webView.load(URLRequest(url: url))
             preview = webView
+            
+            let spinner = UIActivityIndicatorView(style: .medium)
+            spinner.startAnimating()
+            spinner.center = webView.center
+            webView.addSubview(spinner)
+            webView.sendSubviewToBack(spinner)
         case .address:
             let size = CGSize(width: 300, height: 300)
             let mapView = MKMapView(frame: CGRect(origin: .zero, size: size))
+            mapView.isRotateEnabled = false
+            mapView.isPitchEnabled = false
+            mapView.showsUserLocation = true
             preview = mapView
+            
             getMapItem(result: selectedResult) { mapItem in
                 let delta = 0.02
                 let span = MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)
@@ -300,10 +339,43 @@ extension ViewModel: UIContextMenuInteractionDelegate {
                 annotation.coordinate = mapItem.placemark.coordinate
                 mapView.addAnnotation(annotation)
             }
-        default:
-            preview = UIView()
+        default: break
         }
         
+        let rect = textView.layoutManager.boundingRect(forGlyphRange: selectedResult.range, in: textView.textContainer)
+        let target = UIPreviewTarget(container: textView, center: CGPoint(x: rect.midX, y: rect.midY))
         return UITargetedPreview(view: preview, parameters: UIPreviewParameters(), target: target)
+    }
+}
+
+extension ViewModel: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        webViewFinished(webView)
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        webViewFailed(webView)
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        webViewFailed(webView)
+    }
+    
+    func webViewFailed(_ webView: WKWebView) {
+        webViewFinished(webView)
+        let config = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 22))
+        let image = UIImage(systemName: "wifi.slash", withConfiguration: config)
+        let imageView = UIImageView(image: image)
+        imageView.tintColor = .secondaryLabel
+        imageView.center = webView.center
+        webView.addSubview(imageView)
+    }
+    
+    func webViewFinished(_ webView: WKWebView) {
+        webView.subviews.forEach { subview in
+            if let spinner = subview as? UIActivityIndicatorView {
+                spinner.stopAnimating()
+            }
+        }
     }
 }

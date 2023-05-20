@@ -16,6 +16,9 @@
 		0402C66B2A13A48700238C51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C66A2A13A48700238C51 /* Constants.swift */; };
 		0402C6A12A1629D000238C51 /* TextAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6A02A1629D000238C51 /* TextAlert.swift */; };
 		0402C6A32A162DE100238C51 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6A22A162DE100238C51 /* ContactView.swift */; };
+		0402C6A62A1839B400238C51 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6A52A1839B400238C51 /* String.swift */; };
+		0402C6A82A184BF700238C51 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6A72A184BF700238C51 /* URL.swift */; };
+		0402C6AA2A1855F100238C51 /* CNContactStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6A92A1855F100238C51 /* CNContactStore.swift */; };
 		0413DAC52999048500A1624F /* TextApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAC42999048500A1624F /* TextApp.swift */; };
 		0413DAC92999048600A1624F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0413DAC82999048600A1624F /* Assets.xcassets */; };
 		0413DAD2299931B300A1624F /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD1299931B300A1624F /* Int.swift */; };
@@ -40,6 +43,9 @@
 		0402C66A2A13A48700238C51 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0402C6A02A1629D000238C51 /* TextAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlert.swift; sourceTree = "<group>"; };
 		0402C6A22A162DE100238C51 /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
+		0402C6A52A1839B400238C51 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		0402C6A72A184BF700238C51 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		0402C6A92A1855F100238C51 /* CNContactStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNContactStore.swift; sourceTree = "<group>"; };
 		0413DAC22999048500A1624F /* Text.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Text.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0413DAC42999048500A1624F /* TextApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextApp.swift; sourceTree = "<group>"; };
 		0413DAC82999048600A1624F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -69,7 +75,6 @@
 		0413DAC32999048500A1624F /* Text */ = {
 			isa = PBXGroup;
 			children = (
-				0413DAC42999048500A1624F /* TextApp.swift */,
 				04265B7229D0D83300D7B588 /* Views */,
 				04265B7529D0E0DB00D7B588 /* Models */,
 				04265B7129D0D82A00D7B588 /* Helpers */,
@@ -83,8 +88,11 @@
 			isa = PBXGroup;
 			children = (
 				0413DAD3299931BE00A1624F /* Collection.swift */,
+				0402C6A92A1855F100238C51 /* CNContactStore.swift */,
 				04265B7D29D0FAEA00D7B588 /* EKEvent.swift */,
 				0413DAD1299931B300A1624F /* Int.swift */,
+				0402C6A52A1839B400238C51 /* String.swift */,
+				0402C6A72A184BF700238C51 /* URL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -114,6 +122,7 @@
 		04265B7229D0D83300D7B588 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0413DAC42999048500A1624F /* TextApp.swift */,
 				0413DAD92999320A00A1624F /* RootView.swift */,
 				0413DADE2999324B00A1624F /* TextView.swift */,
 				04265B7629D0E0E500D7B588 /* Extra */,
@@ -230,6 +239,7 @@
 				0402C6632A13A3AC00238C51 /* Store.swift in Sources */,
 				0402C66B2A13A48700238C51 /* Constants.swift in Sources */,
 				0402C65F2A13A31100238C51 /* MenuChevron.swift in Sources */,
+				0402C6A82A184BF700238C51 /* URL.swift in Sources */,
 				0402C6A32A162DE100238C51 /* ContactView.swift in Sources */,
 				0402C6652A13A3D700238C51 /* Emails.swift in Sources */,
 				0402C6612A13A39E00238C51 /* Storage.swift in Sources */,
@@ -241,10 +251,12 @@
 				0413DADF2999324B00A1624F /* TextView.swift in Sources */,
 				0402C6A12A1629D000238C51 /* TextAlert.swift in Sources */,
 				04265B7829D0F5F600D7B588 /* ShakeDetector.swift in Sources */,
+				0402C6AA2A1855F100238C51 /* CNContactStore.swift in Sources */,
 				0402C6692A13A40700238C51 /* EmailView.swift in Sources */,
 				0413DADD2999323F00A1624F /* EventView.swift in Sources */,
 				0413DAC52999048500A1624F /* TextApp.swift in Sources */,
 				0413DADA2999320A00A1624F /* RootView.swift in Sources */,
+				0402C6A62A1839B400238C51 /* String.swift in Sources */,
 				04265B7429D0D86600D7B588 /* Defaults.swift in Sources */,
 				0413DAD2299931B300A1624F /* Int.swift in Sources */,
 			);
@@ -267,9 +279,11 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_CFBundleDisplayName = Notepad;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "Add events to your calendar";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Detect your current location";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Add details to your contacts";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is shown on the map";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -311,9 +325,11 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_CFBundleDisplayName = Notepad;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "Add events to your calendar";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Detect your current location";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Add details to your contacts";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is shown on the map";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
