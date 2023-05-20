@@ -42,9 +42,9 @@ class ViewModel: NSObject, ObservableObject {
     var shareItems = [Any]() { didSet {
         showShareSheet = true
     }}
-    @Published var showAlert = false
-    var alert: TextAlert? { didSet {
-        showAlert = true
+    @Published var showErrorAlert = false
+    @Published var error: TextError? { didSet {
+        showErrorAlert = true
     }}
     @Published var showContactView = false
     var mapItem: MKMapItem? { didSet {
@@ -60,7 +60,7 @@ class ViewModel: NSObject, ObservableObject {
     // MARK: - Initialiser
     override init() {
         super.init()
-        tapRecogniser = UITapGestureRecognizer(target: self, action: #selector(ViewModel.handleTap))
+        tapRecogniser = UITapGestureRecognizer(target: self, action: #selector(ViewModel.handleTextTap))
     }
     
     // MARK: - Functions
@@ -104,7 +104,7 @@ class ViewModel: NSObject, ObservableObject {
         let address = NSString(string: text).substring(with: result.range)
         CLGeocoder().geocodeAddressString(address) { placemarks, error in
             guard let placemark = placemarks?.first else {
-                self.alert = .geocodeAddressError
+                self.error = .geocodeAddress
                 return
             }
             let mapItem = MKMapItem(placemark: MKPlacemark(placemark: placemark))
@@ -115,7 +115,7 @@ class ViewModel: NSObject, ObservableObject {
     func createEvent(result: NSTextCheckingResult) {
         EKEventStore.shared.requestAccess(to: .event) { success, error in
             guard success else {
-                self.alert = .eventAuthDenied
+                self.error = .eventAuth
                 return
             }
             let event = EKEvent(eventStore: .shared)
@@ -131,7 +131,7 @@ class ViewModel: NSObject, ObservableObject {
     func requestContactsAuth(completion: @escaping () -> Void) {
         CNContactStore.shared.requestAccess(for: .contacts) { success, error in
             guard success else {
-                self.alert = .contactsAuthDenied
+                self.error = .contactsAuth
                 return
             }
             completion()
@@ -139,42 +139,47 @@ class ViewModel: NSObject, ObservableObject {
     }
     
     @objc
-    func handleTap(tap: UITapGestureRecognizer) {
+    func handleTextTap(tap: UITapGestureRecognizer) {
         guard let textView else { return }
         let point = tap.location(in: textView)
         if let result = getClosestResult(to: point) {
-            switch result.resultType {
-            case .address:
-                getMapItem(result: result) { mapItem in
-                    mapItem.openInMaps()
-                }
-            case .date:
-                createEvent(result: result)
-            case .link:
-                guard let url = result.url else { return }
-                UIApplication.shared.open(url)
-            case .phoneNumber:
-                guard let number = result.phoneNumber,
-                      let url = URL(string: "tel://\(number)")
-                else { return }
-                UIApplication.shared.open(url)
-            default:
-                break
-            }
+            performDefaultAction(for: result)
         } else if let position = textView.closestPosition(to: point) {
             textView.becomeFirstResponder()
             textView.selectedTextRange = textView.textRange(from: position, to: position)
         }
     }
     
+    func performDefaultAction(for result: NSTextCheckingResult) {
+        switch result.resultType {
+        case .address:
+            getMapItem(result: result) { mapItem in
+                mapItem.openInMaps()
+            }
+        case .date:
+            createEvent(result: result)
+        case .link:
+            guard let url = result.url else { return }
+            UIApplication.shared.open(url)
+        case .phoneNumber:
+            guard let number = result.phoneNumber,
+                  let url = URL(string: "tel://\(number)")
+            else { return }
+            UIApplication.shared.open(url)
+        default:
+            break
+        }
+    }
+    
     func addAttributes() {
         detectData()
-        let attributes = NSMutableAttributedString(string: text, attributes: plainAttributes)
+        let string = NSMutableAttributedString(string: text, attributes: plainAttributes)
         for result in results {
-            attributes.addAttribute(.foregroundColor, value: UIColor(.accentColor), range: result.range)
-            attributes.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: result.range)
+            if let attributes = result.attributes {
+                string.addAttributes(attributes, range: result.range)
+            }
         }
-        textView?.attributedText = attributes
+        textView?.attributedText = string
         textView?.addGestureRecognizer(tapRecogniser)
     }
 }
@@ -183,12 +188,14 @@ class ViewModel: NSObject, ObservableObject {
 extension ViewModel: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         text = textView.text
+        textView.attributedText = NSAttributedString(string: text, attributes: plainAttributes)
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         DispatchQueue.main.async {
             self.editing = true
         }
+        results = []
         textView.attributedText = NSAttributedString(string: text, attributes: plainAttributes)
         textView.removeGestureRecognizer(tapRecogniser)
     }
@@ -231,14 +238,12 @@ extension ViewModel: UIContextMenuInteractionDelegate {
                 UIPasteboard.general.string = title
                 Haptics.tap()
             })
-            children.append(UIAction(title: "Share...", image: UIImage(systemName: "square.and.arrow.up")) { action in
-                guard let encodedAddress = title.urlEncoding,
-                      let url = URL(string: "https://maps.apple.com/?address=\(encodedAddress)") else {
-                    self.alert = .shareAddressUrlError
-                    return
-                }
-                self.shareItems = [url]
-            })
+            if let encodedAddress = title.urlEncoded,
+               let url = URL(string: "https://maps.apple.com/?address=\(encodedAddress)") {
+                children.append(UIAction(title: "Share...", image: UIImage(systemName: "square.and.arrow.up")) { action in
+                    self.shareItems = [url]
+                })
+            }
         case .date:
             children.append(UIAction(title: "Create Event", image: UIImage(systemName: "calendar.badge.plus")) { action in
                 self.createEvent(result: selectedResult)
@@ -280,10 +285,16 @@ extension ViewModel: UIContextMenuInteractionDelegate {
         case .phoneNumber:
             guard let number = selectedResult.phoneNumber else { return nil }
             title = number
-            children.append(UIAction(title: "Call \(number)", image: UIImage(systemName: "phone")) { action in
-                guard let url = URL(string: "tel://\(number)") else { return }
-                UIApplication.shared.open(url)
-            })
+            if let url = URL(string: "tel:\(number)") {
+                children.append(UIAction(title: "Call \(number)", image: UIImage(systemName: "phone")) { action in
+                    UIApplication.shared.open(url)
+                })
+            }
+            if let url = URL(string: "sms:\(number)") {
+                children.append(UIAction(title: "Send Message", image: UIImage(systemName: "message")) { action in
+                    UIApplication.shared.open(url)
+                })
+            }
             children.append(UIAction(title: "Add to Contacts", image: UIImage(systemName: "person.crop.circle.badge.plus")) { action in
                 self.requestContactsAuth {
                     self.phoneNumber = number
@@ -324,7 +335,7 @@ extension ViewModel: UIContextMenuInteractionDelegate {
             webView.addSubview(spinner)
             webView.sendSubviewToBack(spinner)
         case .address:
-            let size = CGSize(width: 300, height: 300)
+            let size = CGSize(width: 300, height: 250)
             let mapView = MKMapView(frame: CGRect(origin: .zero, size: size))
             mapView.isRotateEnabled = false
             mapView.isPitchEnabled = false
@@ -342,12 +353,27 @@ extension ViewModel: UIContextMenuInteractionDelegate {
         default: break
         }
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handlePreviewTap))
+        tap.delegate = self
+        preview.addGestureRecognizer(tap)
+        
         let rect = textView.layoutManager.boundingRect(forGlyphRange: selectedResult.range, in: textView.textContainer)
         let target = UIPreviewTarget(container: textView, center: CGPoint(x: rect.midX, y: rect.midY))
         return UITargetedPreview(view: preview, parameters: UIPreviewParameters(), target: target)
     }
+    
+    @objc func handlePreviewTap() {
+        guard let selectedResult else { return }
+        performDefaultAction(for: selectedResult)
+    }
 }
 
+// MARK: - WKNavigationDelegate
+extension ViewModel: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool { true }
+}
+
+// MARK: - WKNavigationDelegate
 extension ViewModel: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webViewFinished(webView)

@@ -40,9 +40,8 @@ struct EventView: UIViewControllerRepresentable {
             if action == .saved {
                 do {
                     try EKEventStore.shared.save(parent.event, span: .thisEvent)
-                    parent.vm.alert = .addEventSuccess
-                } catch {
-                    parent.vm.alert = .addEventError
+                } catch { 
+                    parent.vm.error = .addEvent
                 }
             }
             vc.dismiss(animated: true)

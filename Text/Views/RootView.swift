@@ -101,16 +101,6 @@ struct RootView: View {
         }
         .sheet(isPresented: $vm.showContactView) {
             ContactView()
-//            NavigationView {
-//                ContactView()
-//                    .toolbar {
-//                        ToolbarItem(placement: .cancellationAction) {
-//                            Button("Done") {
-//                                print("hi")
-//                            }
-//                        }
-//                    }
-//            }
         }
         .onShake {
             if vm.previousTexts.isNotEmpty {
@@ -118,15 +108,31 @@ struct RootView: View {
                 Haptics.success()
             }
         }
-        .alert("Undo Edit", isPresented: $showUndoAlert) {
-            Button("Cancel", role: .cancel) {}
-            Button("Undo") {
-                vm.undoEdit()
-            }
-        }
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .active {
                 vm.objectWillChange.send()
+            }
+        }
+        .background {
+            Text("")
+                .alert("Undo Edit", isPresented: $showUndoAlert) {
+                    Button("Cancel", role: .cancel) {}
+                    Button("Undo") {
+                        vm.undoEdit()
+                    }
+                }
+            if let error = vm.error {
+                Text("")
+                    .alert(error.title, isPresented: $vm.showErrorAlert) {
+                        Button("OK", role: .cancel) {}
+                        if error.showsOpenSettingsButton {
+                            Button("Open Settings", role: .cancel) {
+                                vm.openSettings()
+                            }
+                        }
+                    } message: {
+                        Text(error.description)
+                    }
             }
         }
         .navigationViewStyle(.stack)

@@ -9,5 +9,5 @@ import Foundation
 import Contacts
 
 extension CNContactStore {
-    static var shared: CNContactStore { .init() }
+    static let shared = CNContactStore()
 }

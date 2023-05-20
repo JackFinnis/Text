@@ -11,7 +11,3 @@ import EventKit
 extension EKEvent: Identifiable {
     public var id: UUID { UUID() }
 }
-
-extension EKEventStore {
-    static let shared = EKEventStore()
-}
