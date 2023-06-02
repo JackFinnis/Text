@@ -25,21 +25,13 @@ struct RootView: View {
                             .foregroundColor(Color(.placeholderText))
                     }
                 }
-                .overlay(alignment: .bottom) {
-                    if vm.text.isNotEmpty && !vm.editing {
-                        Text(vm.words.formatted(singular: "word") + " • " + vm.text.count.formatted(singular: "char"))
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                            .padding()
-                    }
-                }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         if vm.text.isNotEmpty {
                             Button("Copy") {
                                 UIPasteboard.general.string = vm.text
-                                Haptics.tap()
+                                Haptics.success()
                             }
                         }
                     }
@@ -48,12 +40,12 @@ struct RootView: View {
                             Button {
                                 vm.shareItems = [Constants.appUrl]
                             } label: {
-                                Label("Share \(Constants.name)", systemImage: "square.and.arrow.up")
+                                Label("Share the App", systemImage: "square.and.arrow.up")
                             }
                             Button {
                                 Store.requestRating()
                             } label: {
-                                Label("Rate \(Constants.name)", systemImage: "star")
+                                Label("Rate the App", systemImage: "star")
                             }
                             Button {
                                 Store.writeReview()
@@ -81,10 +73,12 @@ struct RootView: View {
                             }
                             .foregroundColor(.primary)
                         }
+                        .sharePopover(items: vm.shareItems, isPresented: $vm.showShareSheet)
                     }
                     ToolbarItem(placement: .primaryAction) {
                         if UIPasteboard.general.hasStrings {
                             Button("Paste") {
+                                Haptics.success()
                                 vm.text = UIPasteboard.general.string ?? ""
                                 if !vm.editing {
                                     vm.addAttributes()
@@ -92,9 +86,13 @@ struct RootView: View {
                             }
                         }
                     }
+                    ToolbarItem(placement: .status) {
+                        Text(vm.words.formatted(singular: "word") + " • " + vm.text.count.formatted(singular: "char"))
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
                 }
         }
-        .shareSheet(items: vm.shareItems, isPresented: $vm.showShareSheet)
         .emailSheet(recipient: Constants.email, subject: "\(Constants.name) Feedback", isPresented: $showEmailSheet)
         .sheet(item: $vm.event) { event in
             EventView(event: event)

@@ -18,7 +18,7 @@ struct ShareView: UIViewControllerRepresentable {
 }
 
 extension View {
-    func shareSheet(items: [Any], isPresented: Binding<Bool>) -> some View {
+    func sharePopover(items: [Any], isPresented: Binding<Bool>) -> some View {
         self.popover(isPresented: isPresented) {
             let view = ShareView(items: items).ignoresSafeArea()
             if #available(iOS 16, *) {

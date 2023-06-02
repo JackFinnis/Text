@@ -236,7 +236,7 @@ extension ViewModel: UIContextMenuInteractionDelegate {
             })
             children.append(UIAction(title: "Copy Address", image: UIImage(systemName: "doc.on.doc")) { action in
                 UIPasteboard.general.string = title
-                Haptics.tap()
+                Haptics.success()
             })
             if let encodedAddress = title.urlEncoded,
                let url = URL(string: "https://maps.apple.com/?address=\(encodedAddress)") {
@@ -250,7 +250,7 @@ extension ViewModel: UIContextMenuInteractionDelegate {
             })
             children.append(UIAction(title: "Copy Event", image: UIImage(systemName: "doc.on.doc")) { action in
                 UIPasteboard.general.string = title
-                Haptics.tap()
+                Haptics.success()
             })
         case .link:
             guard let url = selectedResult.url else { return nil }
@@ -267,7 +267,7 @@ extension ViewModel: UIContextMenuInteractionDelegate {
                 })
                 children.append(UIAction(title: "Copy Email", image: UIImage(systemName: "doc.on.doc")) { action in
                     UIPasteboard.general.string = email
-                    Haptics.tap()
+                    Haptics.success()
                 })
             } else {
                 title = url.absoluteString
@@ -276,7 +276,7 @@ extension ViewModel: UIContextMenuInteractionDelegate {
                 })
                 children.append(UIAction(title: "Copy Link", image: UIImage(systemName: "doc.on.doc")) { action in
                     UIPasteboard.general.url = url
-                    Haptics.tap()
+                    Haptics.success()
                 })
                 children.append(UIAction(title: "Share...", image: UIImage(systemName: "square.and.arrow.up")) { action in
                     self.shareItems = [url]
@@ -302,7 +302,7 @@ extension ViewModel: UIContextMenuInteractionDelegate {
             })
             children.append(UIAction(title: "Copy Number", image: UIImage(systemName: "doc.on.doc")) { action in
                 UIPasteboard.general.string = number
-                Haptics.tap()
+                Haptics.success()
             })
         default:
             return nil
