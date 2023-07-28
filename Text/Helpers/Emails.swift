@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MessageUI
 
 struct Emails {
     static func mailtoUrl(subject: String) -> URL? {

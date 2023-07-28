@@ -15,7 +15,6 @@ import WebKit
 @MainActor
 class ViewModel: NSObject, ObservableObject {
     // MARK: - Properties
-    // Text
     let plainAttributes: [NSAttributedString.Key: Any] = [
         .foregroundColor: UIColor.label,
         .font: UIFont.systemFont(ofSize: UIFont.buttonFontSize)
@@ -38,14 +37,8 @@ class ViewModel: NSObject, ObservableObject {
     var results = [NSTextCheckingResult]()
     var selectedResult: NSTextCheckingResult?
     @Published var event: EKEvent?
-    @Published var showShareSheet = false
-    var shareItems = [Any]() { didSet {
-        showShareSheet = true
-    }}
-    @Published var showErrorAlert = false
-    @Published var error: TextError? { didSet {
-        showErrorAlert = true
-    }}
+    @Published var error: TextError?
+    
     @Published var showContactView = false
     var mapItem: MKMapItem? { didSet {
         showContactView = true
@@ -241,7 +234,7 @@ extension ViewModel: UIContextMenuInteractionDelegate {
             if let encodedAddress = title.urlEncoded,
                let url = URL(string: "https://maps.apple.com/?address=\(encodedAddress)") {
                 children.append(UIAction(title: "Share...", image: UIImage(systemName: "square.and.arrow.up")) { action in
-                    self.shareItems = [url]
+                    self.share(items: [url], point: location)
                 })
             }
         case .date:
@@ -257,9 +250,11 @@ extension ViewModel: UIContextMenuInteractionDelegate {
             if url.isMailto {
                 guard let email = url.email else { return nil }
                 title = email
-                children.append(UIAction(title: "New Mail Message", image: UIImage(systemName: "envelope")) { action in
-                    UIApplication.shared.open(url)
-                })
+                if UIApplication.shared.canOpenURL(url) {
+                    children.append(UIAction(title: "New Mail Message", image: UIImage(systemName: "envelope")) { action in
+                        UIApplication.shared.open(url)
+                    })
+                }
                 children.append(UIAction(title: "Add to Contacts", image: UIImage(systemName: "person.crop.circle.badge.plus")) { action in
                     self.requestContactsAuth {
                         self.email = email
@@ -271,26 +266,28 @@ extension ViewModel: UIContextMenuInteractionDelegate {
                 })
             } else {
                 title = url.absoluteString
-                children.append(UIAction(title: "Open Link", image: UIImage(systemName: "safari")) { action in
-                    UIApplication.shared.open(url)
-                })
+                if UIApplication.shared.canOpenURL(url) {
+                    children.append(UIAction(title: "Open Link", image: UIImage(systemName: "safari")) { action in
+                        UIApplication.shared.open(url)
+                    })
+                }
                 children.append(UIAction(title: "Copy Link", image: UIImage(systemName: "doc.on.doc")) { action in
                     UIPasteboard.general.url = url
                     Haptics.success()
                 })
                 children.append(UIAction(title: "Share...", image: UIImage(systemName: "square.and.arrow.up")) { action in
-                    self.shareItems = [url]
+                    self.share(items: [url], point: location)
                 })
             }
         case .phoneNumber:
             guard let number = selectedResult.phoneNumber else { return nil }
             title = number
-            if let url = URL(string: "tel:\(number)") {
+            if let url = URL(string: "tel:\(number)"), UIApplication.shared.canOpenURL(url) {
                 children.append(UIAction(title: "Call \(number)", image: UIImage(systemName: "phone")) { action in
                     UIApplication.shared.open(url)
                 })
             }
-            if let url = URL(string: "sms:\(number)") {
+            if let url = URL(string: "sms:\(number)"), UIApplication.shared.canOpenURL(url) {
                 children.append(UIAction(title: "Send Message", image: UIImage(systemName: "message")) { action in
                     UIApplication.shared.open(url)
                 })
@@ -365,6 +362,13 @@ extension ViewModel: UIContextMenuInteractionDelegate {
     @objc func handlePreviewTap() {
         guard let selectedResult else { return }
         performDefaultAction(for: selectedResult)
+    }
+    
+    func share(items: [Any], point: CGPoint) {
+        let shareVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        shareVC.popoverPresentationController?.sourceView = textView
+        shareVC.popoverPresentationController?.sourceRect = CGRect(origin: point, size: .zero)
+        textView?.window?.rootViewController?.present(shareVC, animated: true)
     }
 }
 

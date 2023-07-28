@@ -13,6 +13,7 @@ struct RootView: View {
     @StateObject var vm = ViewModel()
     @State var showUndoAlert = false
     @State var showEmailSheet = false
+    @State var showSharePopover = false
     
     var body: some View {
         NavigationView {
@@ -28,24 +29,23 @@ struct RootView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
-                        if vm.text.isNotEmpty {
-                            Button("Copy") {
-                                UIPasteboard.general.string = vm.text
-                                Haptics.success()
-                            }
+                        Button("Copy") {
+                            UIPasteboard.general.string = vm.text
+                            Haptics.success()
                         }
+                        .disabled(vm.text.isEmpty)
                     }
                     ToolbarItem(placement: .principal) {
                         Menu {
                             Button {
-                                vm.shareItems = [Constants.appUrl]
+                                showSharePopover = true
                             } label: {
-                                Label("Share the App", systemImage: "square.and.arrow.up")
+                                Label("Share \(Constants.name)", systemImage: "square.and.arrow.up")
                             }
                             Button {
                                 Store.requestRating()
                             } label: {
-                                Label("Rate the App", systemImage: "star")
+                                Label("Rate \(Constants.name)", systemImage: "star")
                             }
                             Button {
                                 Store.writeReview()
@@ -54,7 +54,7 @@ struct RootView: View {
                             }
                             if MFMailComposeViewController.canSendMail() {
                                 Button {
-                                    showEmailSheet.toggle()
+                                    showEmailSheet = true
                                 } label: {
                                     Label("Send us Feedback", systemImage: "envelope")
                                 }
@@ -69,22 +69,21 @@ struct RootView: View {
                             HStack {
                                 Text(Constants.name)
                                     .font(.headline)
+                                    .foregroundColor(.primary)
                                 MenuChevron()
                             }
-                            .foregroundColor(.primary)
                         }
-                        .sharePopover(items: vm.shareItems, isPresented: $vm.showShareSheet)
+                        .sharePopover(items: [Constants.appUrl], showsSharedAlert: true, isPresented: $showSharePopover)
                     }
                     ToolbarItem(placement: .primaryAction) {
-                        if UIPasteboard.general.hasStrings {
-                            Button("Paste") {
-                                Haptics.success()
-                                vm.text = UIPasteboard.general.string ?? ""
-                                if !vm.editing {
-                                    vm.addAttributes()
-                                }
+                        Button("Paste") {
+                            vm.text = UIPasteboard.general.string ?? ""
+                            Haptics.success()
+                            if !vm.editing {
+                                vm.addAttributes()
                             }
                         }
+                        .disabled(!UIPasteboard.general.hasStrings)
                     }
                     ToolbarItem(placement: .status) {
                         Text(vm.words.formatted(singular: "word") + " • " + vm.text.count.formatted(singular: "char"))
@@ -106,11 +105,6 @@ struct RootView: View {
                 Haptics.success()
             }
         }
-        .onChange(of: scenePhase) { newPhase in
-            if newPhase == .active {
-                vm.objectWillChange.send()
-            }
-        }
         .background {
             Text("")
                 .alert("Undo Edit", isPresented: $showUndoAlert) {
@@ -121,7 +115,7 @@ struct RootView: View {
                 }
             if let error = vm.error {
                 Text("")
-                    .alert(error.title, isPresented: $vm.showErrorAlert) {
+                    .alert(error.title, isPresented: .constant(true)) {
                         Button("OK", role: .cancel) {}
                         if error.showsOpenSettingsButton {
                             Button("Open Settings", role: .cancel) {

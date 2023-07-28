@@ -40,7 +40,7 @@ struct EventView: UIViewControllerRepresentable {
             if action == .saved {
                 do {
                     try EKEventStore.shared.save(parent.event, span: .thisEvent)
-                } catch { 
+                } catch {
                     parent.vm.error = .addEvent
                 }
             }
