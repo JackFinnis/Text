@@ -15,5 +15,6 @@ struct MenuChevron: View {
             .font(.footnote.weight(.heavy))
             .foregroundStyle(.secondary, Color(colorScheme == .light ? .tertiarySystemFill : .systemFill))
             .foregroundColor(.primary)
+            .imageScale(.large)
     }
 }
