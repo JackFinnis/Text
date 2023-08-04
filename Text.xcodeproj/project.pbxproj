@@ -15,7 +15,6 @@
 		0402C6692A13A40700238C51 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6682A13A40700238C51 /* EmailView.swift */; };
 		0402C66B2A13A48700238C51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C66A2A13A48700238C51 /* Constants.swift */; };
 		0402C6A12A1629D000238C51 /* TextAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6A02A1629D000238C51 /* TextAlert.swift */; };
-		0402C6A62A1839B400238C51 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6A52A1839B400238C51 /* String.swift */; };
 		0402C6A82A184BF700238C51 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6A72A184BF700238C51 /* URL.swift */; };
 		0402C6AA2A1855F100238C51 /* CNContactStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6A92A1855F100238C51 /* CNContactStore.swift */; };
 		0402C6AC2A18CAD400238C51 /* EKEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6AB2A18CAD400238C51 /* EKEventStore.swift */; };
@@ -41,7 +40,6 @@
 		0402C6682A13A40700238C51 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		0402C66A2A13A48700238C51 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0402C6A02A1629D000238C51 /* TextAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlert.swift; sourceTree = "<group>"; };
-		0402C6A52A1839B400238C51 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		0402C6A72A184BF700238C51 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		0402C6A92A1855F100238C51 /* CNContactStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNContactStore.swift; sourceTree = "<group>"; };
 		0402C6AB2A18CAD400238C51 /* EKEventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKEventStore.swift; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 				0402C6AB2A18CAD400238C51 /* EKEventStore.swift */,
 				0413DAD1299931B300A1624F /* Int.swift */,
 				0402C6B22A18E5BF00238C51 /* NSTextCheckingResult.swift */,
-				0402C6A52A1839B400238C51 /* String.swift */,
 				0402C6A72A184BF700238C51 /* URL.swift */,
 			);
 			path = Extensions;
@@ -254,7 +251,6 @@
 				0413DAC52999048500A1624F /* TextApp.swift in Sources */,
 				0413DADA2999320A00A1624F /* RootView.swift in Sources */,
 				0402C6AC2A18CAD400238C51 /* EKEventStore.swift in Sources */,
-				0402C6A62A1839B400238C51 /* String.swift in Sources */,
 				04265B7429D0D86600D7B588 /* Defaults.swift in Sources */,
 				0413DAD2299931B300A1624F /* Int.swift in Sources */,
 			);

@@ -14,3 +14,9 @@ struct Emails {
         return URL(string: "mailto:\(Constants.email)?subject=\(encodedSubject)")
     }
 }
+
+extension String {
+    var urlEncoded: String? {
+        addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+    }
+}
