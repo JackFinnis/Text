@@ -8,7 +8,7 @@
 import Foundation
 
 extension URL {
-    var isWebsite: Bool { scheme?.starts(with: "http") ?? false }
+    var isWebsite: Bool { scheme?.lowercased().starts(with: "http") ?? false }
     var isMailto: Bool { scheme == "mailto" }
     var email: String? {
         guard isMailto else { return nil }
