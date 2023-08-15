@@ -59,7 +59,7 @@
 		04265B7329D0D86600D7B588 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		04265B7729D0F5F600D7B588 /* ShakeDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeDetector.swift; sourceTree = "<group>"; };
 		04265B7929D0F75100D7B588 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
-		04FEC9812A8C19FE0074EA5E /* TextMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04FEC9812A8C19FE0074EA5E /* Notepad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notepad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04FEC9832A8C19FE0074EA5E /* TextMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMacApp.swift; sourceTree = "<group>"; };
 		04FEC9872A8C19FF0074EA5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04FEC9902A8C1CE80074EA5E /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				0413DAC22999048500A1624F /* Text.app */,
-				04FEC9812A8C19FE0074EA5E /* TextMac.app */,
+				04FEC9812A8C19FE0074EA5E /* Notepad.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -223,7 +223,7 @@
 			);
 			name = TextMac;
 			productName = TextMac;
-			productReference = 04FEC9812A8C19FE0074EA5E /* TextMac.app */;
+			productReference = 04FEC9812A8C19FE0074EA5E /* Notepad.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -557,7 +557,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jackfinnis.TextMac;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Notepad;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -588,7 +588,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jackfinnis.TextMac;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Notepad;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
