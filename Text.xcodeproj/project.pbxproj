@@ -62,7 +62,6 @@
 		04FEC9812A8C19FE0074EA5E /* TextMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04FEC9832A8C19FE0074EA5E /* TextMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMacApp.swift; sourceTree = "<group>"; };
 		04FEC9872A8C19FF0074EA5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		04FEC98C2A8C19FF0074EA5E /* TextMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TextMac.entitlements; sourceTree = "<group>"; };
 		04FEC9902A8C1CE80074EA5E /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,7 +185,6 @@
 			children = (
 				04FEC9832A8C19FE0074EA5E /* TextMacApp.swift */,
 				04FEC9872A8C19FF0074EA5E /* Assets.xcassets */,
-				04FEC98C2A8C19FF0074EA5E /* TextMac.entitlements */,
 			);
 			path = TextMac;
 			sourceTree = "<group>";
@@ -540,7 +538,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = TextMac/TextMac.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -571,7 +569,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = TextMac/TextMac.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
