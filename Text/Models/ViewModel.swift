@@ -28,9 +28,6 @@ class ViewModel: NSObject, ObservableObject {
     }}
     @Published var editing = false
     var textView: UITextView?
-    var words: Int {
-        text.split { $0.isLetter }.filter(\.isNotEmpty).count
-    }
     
     // Results
     var tapRecogniser = UITapGestureRecognizer()

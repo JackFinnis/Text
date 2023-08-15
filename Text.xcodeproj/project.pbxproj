@@ -29,6 +29,9 @@
 		04265B7429D0D86600D7B588 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04265B7329D0D86600D7B588 /* Defaults.swift */; };
 		04265B7829D0F5F600D7B588 /* ShakeDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04265B7729D0F5F600D7B588 /* ShakeDetector.swift */; };
 		04265B7A29D0F75100D7B588 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04265B7929D0F75100D7B588 /* Haptics.swift */; };
+		04FEC9842A8C19FE0074EA5E /* TextMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FEC9832A8C19FE0074EA5E /* TextMacApp.swift */; };
+		04FEC9882A8C19FF0074EA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04FEC9872A8C19FF0074EA5E /* Assets.xcassets */; };
+		04FEC9912A8C1CE80074EA5E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FEC9902A8C1CE80074EA5E /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,10 +59,22 @@
 		04265B7329D0D86600D7B588 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		04265B7729D0F5F600D7B588 /* ShakeDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeDetector.swift; sourceTree = "<group>"; };
 		04265B7929D0F75100D7B588 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
+		04FEC9812A8C19FE0074EA5E /* TextMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04FEC9832A8C19FE0074EA5E /* TextMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMacApp.swift; sourceTree = "<group>"; };
+		04FEC9872A8C19FF0074EA5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		04FEC98C2A8C19FF0074EA5E /* TextMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TextMac.entitlements; sourceTree = "<group>"; };
+		04FEC9902A8C1CE80074EA5E /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0413DABF2999048500A1624F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04FEC97E2A8C19FE0074EA5E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -90,6 +105,7 @@
 				0413DAD1299931B300A1624F /* Int.swift */,
 				0402C6B22A18E5BF00238C51 /* NSTextCheckingResult.swift */,
 				0402C6A72A184BF700238C51 /* URL.swift */,
+				04FEC9902A8C1CE80074EA5E /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -151,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				0413DAC32999048500A1624F /* Text */,
+				04FEC9822A8C19FE0074EA5E /* TextMac */,
 				047E5F8B28BBFB440017267E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -159,8 +176,19 @@
 			isa = PBXGroup;
 			children = (
 				0413DAC22999048500A1624F /* Text.app */,
+				04FEC9812A8C19FE0074EA5E /* TextMac.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		04FEC9822A8C19FE0074EA5E /* TextMac */ = {
+			isa = PBXGroup;
+			children = (
+				04FEC9832A8C19FE0074EA5E /* TextMacApp.swift */,
+				04FEC9872A8C19FF0074EA5E /* Assets.xcassets */,
+				04FEC98C2A8C19FF0074EA5E /* TextMac.entitlements */,
+			);
+			path = TextMac;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +211,23 @@
 			productReference = 0413DAC22999048500A1624F /* Text.app */;
 			productType = "com.apple.product-type.application";
 		};
+		04FEC9802A8C19FE0074EA5E /* TextMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04FEC98F2A8C19FF0074EA5E /* Build configuration list for PBXNativeTarget "TextMac" */;
+			buildPhases = (
+				04FEC97D2A8C19FE0074EA5E /* Sources */,
+				04FEC97E2A8C19FE0074EA5E /* Frameworks */,
+				04FEC97F2A8C19FE0074EA5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TextMac;
+			productName = TextMac;
+			productReference = 04FEC9812A8C19FE0074EA5E /* TextMac.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -190,11 +235,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					0413DAC12999048500A1624F = {
 						CreatedOnToolsVersion = 14.1;
+					};
+					04FEC9802A8C19FE0074EA5E = {
+						CreatedOnToolsVersion = 14.3.1;
 					};
 				};
 			};
@@ -212,6 +260,7 @@
 			projectRoot = "";
 			targets = (
 				0413DAC12999048500A1624F /* Text */,
+				04FEC9802A8C19FE0074EA5E /* TextMac */,
 			);
 		};
 /* End PBXProject section */
@@ -222,6 +271,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0413DAC92999048600A1624F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04FEC97F2A8C19FE0074EA5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04FEC9882A8C19FF0074EA5E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +301,7 @@
 				0413DAE12999325B00A1624F /* ViewModel.swift in Sources */,
 				0402C6B32A18E5BF00238C51 /* NSTextCheckingResult.swift in Sources */,
 				0413DADF2999324B00A1624F /* TextView.swift in Sources */,
+				04FEC9912A8C1CE80074EA5E /* String.swift in Sources */,
 				0402C6A12A1629D000238C51 /* TextAlert.swift in Sources */,
 				04265B7829D0F5F600D7B588 /* ShakeDetector.swift in Sources */,
 				0402C6AA2A1855F100238C51 /* CNContactStore.swift in Sources */,
@@ -253,6 +311,14 @@
 				0402C6AC2A18CAD400238C51 /* EKEventStore.swift in Sources */,
 				04265B7429D0D86600D7B588 /* Defaults.swift in Sources */,
 				0413DAD2299931B300A1624F /* Int.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04FEC97D2A8C19FE0074EA5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04FEC9842A8C19FE0074EA5E /* TextMacApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +534,68 @@
 			};
 			name = Release;
 		};
+		04FEC98D2A8C19FF0074EA5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = TextMac/TextMac.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 4CQW4CFFYT;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Notepad;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackfinnis.TextMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		04FEC98E2A8C19FF0074EA5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = TextMac/TextMac.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 4CQW4CFFYT;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Notepad;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackfinnis.TextMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -485,6 +613,15 @@
 			buildConfigurations = (
 				047E5F9728BBFB450017267E /* Debug */,
 				047E5F9828BBFB450017267E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04FEC98F2A8C19FF0074EA5E /* Build configuration list for PBXNativeTarget "TextMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04FEC98D2A8C19FF0074EA5E /* Debug */,
+				04FEC98E2A8C19FF0074EA5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
