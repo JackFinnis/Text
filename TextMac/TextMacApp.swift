@@ -18,9 +18,18 @@ struct TextMacApp: App {
     }
 }
 
+// NSTextView NSViewRepresentable doesn't resize to window
 extension NSTextView {
     open override var frame: NSRect { didSet {
         textContainer?.lineFragmentPadding = 12
+        smartInsertDeleteEnabled = false
+        isAutomaticDataDetectionEnabled = true
+        isAutomaticLinkDetectionEnabled = true
+        isAutomaticTextCompletionEnabled = true
+        isAutomaticTextReplacementEnabled = true
+        isAutomaticDashSubstitutionEnabled = false
+        isAutomaticQuoteSubstitutionEnabled = false
+        isAutomaticSpellingCorrectionEnabled = true
     }}
 }
 

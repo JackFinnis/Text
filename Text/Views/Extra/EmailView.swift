@@ -48,7 +48,6 @@ extension View {
 }
 
 struct EmailModifier: ViewModifier {
-    @EnvironmentObject var vm: ViewModel
     @State var showEmailSent = false
     @State var showEmailNotSent = false
     
@@ -80,10 +79,16 @@ struct EmailModifier: ViewModifier {
             .alert("Email Not Sent", isPresented: $showEmailNotSent) {
                 Button("OK", role: .cancel) {}
                 Button("Open Settings") {
-                    vm.openSettings()
+                    openSettings()
                 }
             } message: {
                 Text("Please ensure your email account is authenticated and try again.")
             }
+    }
+    
+    func openSettings() {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(url)
+        }
     }
 }

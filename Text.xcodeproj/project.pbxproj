@@ -14,20 +14,12 @@
 		0402C6672A13A3EC00238C51 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6662A13A3EC00238C51 /* ShareView.swift */; };
 		0402C6692A13A40700238C51 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6682A13A40700238C51 /* EmailView.swift */; };
 		0402C66B2A13A48700238C51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C66A2A13A48700238C51 /* Constants.swift */; };
-		0402C6A12A1629D000238C51 /* TextAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6A02A1629D000238C51 /* TextAlert.swift */; };
-		0402C6A82A184BF700238C51 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6A72A184BF700238C51 /* URL.swift */; };
-		0402C6AA2A1855F100238C51 /* CNContactStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6A92A1855F100238C51 /* CNContactStore.swift */; };
-		0402C6AC2A18CAD400238C51 /* EKEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6AB2A18CAD400238C51 /* EKEventStore.swift */; };
-		0402C6B32A18E5BF00238C51 /* NSTextCheckingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6B22A18E5BF00238C51 /* NSTextCheckingResult.swift */; };
 		0413DAC52999048500A1624F /* TextApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAC42999048500A1624F /* TextApp.swift */; };
 		0413DAC92999048600A1624F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0413DAC82999048600A1624F /* Assets.xcassets */; };
 		0413DAD2299931B300A1624F /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD1299931B300A1624F /* Int.swift */; };
 		0413DAD4299931BE00A1624F /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD3299931BE00A1624F /* Collection.swift */; };
 		0413DADA2999320A00A1624F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD92999320A00A1624F /* RootView.swift */; };
 		0413DADF2999324B00A1624F /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DADE2999324B00A1624F /* TextView.swift */; };
-		0413DAE12999325B00A1624F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAE02999325B00A1624F /* ViewModel.swift */; };
-		04265B7429D0D86600D7B588 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04265B7329D0D86600D7B588 /* Defaults.swift */; };
-		04265B7829D0F5F600D7B588 /* ShakeDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04265B7729D0F5F600D7B588 /* ShakeDetector.swift */; };
 		04265B7A29D0F75100D7B588 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04265B7929D0F75100D7B588 /* Haptics.swift */; };
 		04FEC9842A8C19FE0074EA5E /* TextMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FEC9832A8C19FE0074EA5E /* TextMacApp.swift */; };
 		04FEC9882A8C19FF0074EA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04FEC9872A8C19FF0074EA5E /* Assets.xcassets */; };
@@ -42,12 +34,6 @@
 		0402C6662A13A3EC00238C51 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		0402C6682A13A40700238C51 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		0402C66A2A13A48700238C51 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		0402C6A02A1629D000238C51 /* TextAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlert.swift; sourceTree = "<group>"; };
-		0402C6A72A184BF700238C51 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
-		0402C6A92A1855F100238C51 /* CNContactStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNContactStore.swift; sourceTree = "<group>"; };
-		0402C6AB2A18CAD400238C51 /* EKEventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKEventStore.swift; sourceTree = "<group>"; };
-		0402C6AD2A18CF0D00238C51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0402C6B22A18E5BF00238C51 /* NSTextCheckingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextCheckingResult.swift; sourceTree = "<group>"; };
 		0413DAC22999048500A1624F /* Text.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Text.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0413DAC42999048500A1624F /* TextApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextApp.swift; sourceTree = "<group>"; };
 		0413DAC82999048600A1624F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,9 +41,6 @@
 		0413DAD3299931BE00A1624F /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		0413DAD92999320A00A1624F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		0413DADE2999324B00A1624F /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
-		0413DAE02999325B00A1624F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		04265B7329D0D86600D7B588 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
-		04265B7729D0F5F600D7B588 /* ShakeDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeDetector.swift; sourceTree = "<group>"; };
 		04265B7929D0F75100D7B588 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		04FEC9812A8C19FE0074EA5E /* Notepad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notepad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04FEC9832A8C19FE0074EA5E /* TextMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMacApp.swift; sourceTree = "<group>"; };
@@ -87,7 +70,6 @@
 			isa = PBXGroup;
 			children = (
 				04265B7229D0D83300D7B588 /* Views */,
-				04265B7529D0E0DB00D7B588 /* Models */,
 				04265B7129D0D82A00D7B588 /* Helpers */,
 				04265B7029D0D81F00D7B588 /* Resources */,
 				0413DADB2999321D00A1624F /* Extensions */,
@@ -99,11 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				0413DAD3299931BE00A1624F /* Collection.swift */,
-				0402C6A92A1855F100238C51 /* CNContactStore.swift */,
-				0402C6AB2A18CAD400238C51 /* EKEventStore.swift */,
 				0413DAD1299931B300A1624F /* Int.swift */,
-				0402C6B22A18E5BF00238C51 /* NSTextCheckingResult.swift */,
-				0402C6A72A184BF700238C51 /* URL.swift */,
 				04FEC9902A8C1CE80074EA5E /* String.swift */,
 			);
 			path = Extensions;
@@ -112,7 +90,6 @@
 		04265B7029D0D81F00D7B588 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0402C6AD2A18CF0D00238C51 /* Info.plist */,
 				0413DAC82999048600A1624F /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -122,10 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				0402C66A2A13A48700238C51 /* Constants.swift */,
-				04265B7329D0D86600D7B588 /* Defaults.swift */,
 				0402C6642A13A3D700238C51 /* Emails.swift */,
 				04265B7929D0F75100D7B588 /* Haptics.swift */,
-				04265B7729D0F5F600D7B588 /* ShakeDetector.swift */,
 				0402C6602A13A39E00238C51 /* Storage.swift */,
 				0402C6622A13A3AC00238C51 /* Store.swift */,
 			);
@@ -141,15 +116,6 @@
 				04265B7629D0E0E500D7B588 /* Extra */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		04265B7529D0E0DB00D7B588 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				0413DAE02999325B00A1624F /* ViewModel.swift */,
-				0402C6A02A1629D000238C51 /* TextAlert.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		04265B7629D0E0E500D7B588 /* Extra */ = {
@@ -290,24 +256,16 @@
 				0402C6632A13A3AC00238C51 /* Store.swift in Sources */,
 				0402C66B2A13A48700238C51 /* Constants.swift in Sources */,
 				0402C65F2A13A31100238C51 /* MenuChevron.swift in Sources */,
-				0402C6A82A184BF700238C51 /* URL.swift in Sources */,
 				0402C6652A13A3D700238C51 /* Emails.swift in Sources */,
 				0402C6612A13A39E00238C51 /* Storage.swift in Sources */,
 				04265B7A29D0F75100D7B588 /* Haptics.swift in Sources */,
 				0413DAD4299931BE00A1624F /* Collection.swift in Sources */,
 				0402C6672A13A3EC00238C51 /* ShareView.swift in Sources */,
-				0413DAE12999325B00A1624F /* ViewModel.swift in Sources */,
-				0402C6B32A18E5BF00238C51 /* NSTextCheckingResult.swift in Sources */,
 				0413DADF2999324B00A1624F /* TextView.swift in Sources */,
 				04FEC9912A8C1CE80074EA5E /* String.swift in Sources */,
-				0402C6A12A1629D000238C51 /* TextAlert.swift in Sources */,
-				04265B7829D0F5F600D7B588 /* ShakeDetector.swift in Sources */,
-				0402C6AA2A1855F100238C51 /* CNContactStore.swift in Sources */,
 				0402C6692A13A40700238C51 /* EmailView.swift in Sources */,
 				0413DAC52999048500A1624F /* TextApp.swift in Sources */,
 				0413DADA2999320A00A1624F /* RootView.swift in Sources */,
-				0402C6AC2A18CAD400238C51 /* EKEventStore.swift in Sources */,
-				04265B7429D0D86600D7B588 /* Defaults.swift in Sources */,
 				0413DAD2299931B300A1624F /* Int.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,9 +298,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Text/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Notepad;
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "Notepad needs access to add events to your calendar";
-				INFOPLIST_KEY_NSContactsUsageDescription = "Notepad needs access to add details to your contacts";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Notepad shows your location on the map";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -386,9 +341,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Text/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Notepad;
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "Notepad needs access to add events to your calendar";
-				INFOPLIST_KEY_NSContactsUsageDescription = "Notepad needs access to add details to your contacts";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Notepad shows your location on the map";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

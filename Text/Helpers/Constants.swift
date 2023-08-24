@@ -11,8 +11,7 @@ struct Constants {
     static let name = "Notepad"
     static let email = "jack.finnis@icloud.com"
     static let appUrl = URL(string: "https://apps.apple.com/gb/app/notepad-simple/id6458223059")!
-    static let welcomeMessage =
-"""
+    static let welcomeMessage = """
 Welcome to \(Constants.name)!
 
 Here are some ideas for using the app.

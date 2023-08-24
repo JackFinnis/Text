@@ -7,27 +7,42 @@
 
 import Foundation
 
+protocol OptionalProtocol {
+    var isNil: Bool { get }
+}
+extension Optional: OptionalProtocol {
+    var isNil: Bool { self == nil }
+}
+
+protocol KeyValueStore {
+    func object(forKey key: String) -> Any?
+    func set(_ object: Any?, forKey key: String)
+    func removeObject(forKey key: String)
+}
+extension UserDefaults: KeyValueStore {}
+extension NSUbiquitousKeyValueStore: KeyValueStore {}
+
 @propertyWrapper
 struct Storage<T> {
     let key: String
     let defaultValue: T
-    let iCloudSync: Bool
+    let store: KeyValueStore
     
     init(wrappedValue defaultValue: T, _ key: String, iCloudSync: Bool = false) {
         self.key = key
         self.defaultValue = defaultValue
-        self.iCloudSync = iCloudSync
+        self.store = iCloudSync ? NSUbiquitousKeyValueStore.default : UserDefaults.standard
     }
     
-    let defaults = UserDefaults.standard
     var wrappedValue: T {
         get {
-            defaults.object(forKey: key) as? T ?? defaultValue
+            store.object(forKey: key) as? T ?? defaultValue
         }
         set {
-            defaults.set(newValue, forKey: key)
-            if iCloudSync {
-                NSUbiquitousKeyValueStore.default.set(newValue, forKey: key)
+            if let optionalValue = newValue as? OptionalProtocol, optionalValue.isNil {
+                store.removeObject(forKey: key)
+            } else {
+                store.set(newValue, forKey: key)
             }
         }
     }

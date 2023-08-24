@@ -9,6 +9,6 @@ import Foundation
 
 extension String {
     var words: Int {
-        split(whereSeparator: \.isLetter).filter(\.isNotEmpty).count
+        split { !$0.isLetter }.filter(\.isNotEmpty).count
     }
 }

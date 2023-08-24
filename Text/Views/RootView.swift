@@ -9,16 +9,19 @@ import SwiftUI
 import MessageUI
 
 struct RootView: View {
+    class ViewModel: ObservableObject {}
     @StateObject var vm = ViewModel()
-    @State var showUndoAlert = false
+    
+    @Environment(\.scenePhase) var scenePhase
     @State var showEmailSheet = false
     @State var showSharePopover = false
+    @SceneStorage("text") var text = Constants.welcomeMessage
     
     var body: some View {
         NavigationView {
-            TextView()
+            TextView(text: $text)
                 .overlay(alignment: .topLeading) {
-                    if vm.text.isEmpty {
+                    if text.isEmpty {
                         Text("Enter text here")
                             .padding(.top, 10)
                             .padding(.leading, 20)
@@ -30,13 +33,17 @@ struct RootView: View {
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Copy") {
-                            UIPasteboard.general.string = vm.text
+                            UIPasteboard.general.string = text
+                            vm.objectWillChange.send()
                             Haptics.tap()
                         }
-                        .disabled(vm.text.isEmpty)
+                        .disabled(text.isEmpty)
                     }
                     ToolbarItem(placement: .principal) {
                         Menu {
+                            Text(text.count.formatted(singular: "character"))
+                            Text(text.words.formatted(singular: "word"))
+                            Divider()
                             Button {
                                 showSharePopover.toggle()
                             } label: {
@@ -77,50 +84,16 @@ struct RootView: View {
                     }
                     ToolbarItem(placement: .primaryAction) {
                         Button("Paste") {
-                            vm.previousTexts.append(vm.text)
-                            vm.text = UIPasteboard.general.string ?? ""
-                            if !vm.editing {
-                                vm.addAttributes()
-                            }
+                            text = UIPasteboard.general.string ?? ""
                         }
                         .disabled(!UIPasteboard.general.hasStrings)
                     }
-                    ToolbarItem(placement: .status) {
-                        Text(vm.words.formatted(singular: "word") + " • " + vm.text.count.formatted(singular: "char"))
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
                 }
         }
-        .onShake {
-            if vm.previousTexts.isNotEmpty {
-                showUndoAlert.toggle()
-                Haptics.success()
-            }
+        .onChange(of: scenePhase) { scenePhase in
+            vm.objectWillChange.send()
         }
-        .background {
-            Text("")
-                .emailSheet(recipient: Constants.email, subject: "\(Constants.name) Feedback", isPresented: $showEmailSheet)
-            Text("")
-                .alert("Undo Edit", isPresented: $showUndoAlert) {
-                    Button("Cancel", role: .cancel) {}
-                    Button("Undo") {
-                        vm.undoEdit()
-                    }
-                }
-            Text("")
-                .alert(vm.alert.title, isPresented: $vm.showAlert) {
-                    Button("OK", role: .cancel) {}
-                    if vm.alert.showsOpenSettingsButton {
-                        Button("Open Settings", role: .cancel) {
-                            vm.openSettings()
-                        }
-                    }
-                } message: {
-                    Text(vm.alert.description)
-                }
-        }
+        .emailSheet(recipient: Constants.email, subject: "\(Constants.name) Feedback", isPresented: $showEmailSheet)
         .navigationViewStyle(.stack)
-        .environmentObject(vm)
     }
 }
