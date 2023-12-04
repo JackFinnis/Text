@@ -9,13 +9,10 @@ import SwiftUI
 import MessageUI
 
 struct RootView: View {
-    class ViewModel: ObservableObject {}
-    @StateObject var vm = ViewModel()
-    
     @Environment(\.scenePhase) var scenePhase
-    @State var showEmailSheet = false
-    @State var showSharePopover = false
     @AppStorage("text") var text = ""
+    @State var showEmailSheet = false
+    @State var refresh = false
     
     var body: some View {
         NavigationStack {
@@ -34,7 +31,7 @@ struct RootView: View {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Copy") {
                             UIPasteboard.general.string = text
-                            vm.objectWillChange.send()
+                            refresh.toggle()
                             Haptics.tap()
                         }
                         .disabled(text.isEmpty)
@@ -84,8 +81,8 @@ struct RootView: View {
                     }
                 }
         }
-        .onChange(of: scenePhase) { scenePhase in
-            vm.objectWillChange.send()
+        .onChange(of: scenePhase) { _, _ in
+            refresh.toggle()
         }
         .emailSheet(recipient: Constants.email, subject: "\(Constants.name) Feedback", isPresented: $showEmailSheet)
     }

@@ -16,10 +16,12 @@ extension UIFont {
 }
 
 struct TextView: UIViewRepresentable {
-    @Binding var text: String
-    
     let textView = UITextView()
+    let font = UIFont.roundedSystemFont(ofSize: UIFont.labelFontSize)
+    let boldFont = UIFont.roundedSystemFont(ofSize: UIFont.labelFontSize, weight: .semibold)
     @State var wordCount = UIBarButtonItem()
+    
+    @Binding var text: String
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -42,11 +44,13 @@ struct TextView: UIViewRepresentable {
         let clearButton = UIBarButtonItem(title: "Clear", style: .plain, target: context.coordinator, action: #selector(Coordinator.clearText))
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let dismissButton = UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.stopEditing))
-        wordCount.isEnabled = false
         
-        clearButton.setTitleTextAttributes([.font: UIFont.roundedSystemFont(ofSize: UIFont.labelFontSize)], for: .normal)
-        dismissButton.setTitleTextAttributes([.font: UIFont.roundedSystemFont(ofSize: UIFont.labelFontSize, weight: .semibold)], for: .normal)
-        wordCount.setTitleTextAttributes([.font: UIFont.roundedSystemFont(ofSize: UIFont.labelFontSize)], for: .normal)
+        wordCount.isEnabled = false
+        wordCount.setTitleTextAttributes([.font: font], for: .normal)
+        clearButton.setTitleTextAttributes([.font: font], for: .normal)
+        clearButton.setTitleTextAttributes([.font: font], for: .selected)
+        dismissButton.setTitleTextAttributes([.font: boldFont], for: .normal)
+        dismissButton.setTitleTextAttributes([.font: boldFont], for: .selected)
         
         let toolbar = UIToolbar()
         toolbar.items = [clearButton, spacer, wordCount, spacer, dismissButton]
@@ -62,7 +66,7 @@ struct TextView: UIViewRepresentable {
     
     func updateUIView(_ textView: UITextView, context: Context) {
         textView.text = text
-        textView.font = .preferredFont(forTextStyle: .body)
+        textView.font = font
         wordCount.title = text.count.formatted(singular: "char") + " • " + text.words.formatted(singular: "word")
     }
     
