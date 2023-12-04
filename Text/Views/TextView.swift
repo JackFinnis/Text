@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+extension UIFont {
+    class func roundedSystemFont(ofSize size: CGFloat, weight: UIFont.Weight = .regular) -> UIFont {
+        let systemFont = UIFont.systemFont(ofSize: size, weight: weight)
+        guard let descriptor = systemFont.fontDescriptor.withDesign(.rounded) else { return systemFont }
+        return UIFont(descriptor: descriptor, size: size)
+    }
+}
+
 struct TextView: UIViewRepresentable {
     @Binding var text: String
     
@@ -35,6 +43,10 @@ struct TextView: UIViewRepresentable {
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let dismissButton = UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.stopEditing))
         wordCount.isEnabled = false
+        
+        clearButton.setTitleTextAttributes([.font: UIFont.roundedSystemFont(ofSize: UIFont.labelFontSize)], for: .normal)
+        dismissButton.setTitleTextAttributes([.font: UIFont.roundedSystemFont(ofSize: UIFont.labelFontSize, weight: .semibold)], for: .normal)
+        wordCount.setTitleTextAttributes([.font: UIFont.roundedSystemFont(ofSize: UIFont.labelFontSize)], for: .normal)
         
         let toolbar = UIToolbar()
         toolbar.items = [clearButton, spacer, wordCount, spacer, dismissButton]

@@ -12,6 +12,7 @@ struct TextApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .fontDesign(.rounded)
         }
     }
 }
