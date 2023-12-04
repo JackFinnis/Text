@@ -15,16 +15,16 @@ struct RootView: View {
     @Environment(\.scenePhase) var scenePhase
     @State var showEmailSheet = false
     @State var showSharePopover = false
-    @SceneStorage("text") var text = Constants.welcomeMessage
+    @AppStorage("text") var text = ""
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             TextView(text: $text)
                 .overlay(alignment: .topLeading) {
                     if text.isEmpty {
-                        Text("Enter text here")
-                            .padding(.top, 10)
-                            .padding(.leading, 20)
+                        Text(Constants.welcomeMessage)
+                            .padding(.vertical, Constants.verticalPadding)
+                            .padding(.horizontal, Constants.horizontalPadding)
                             .foregroundColor(Color(.placeholderText))
                             .allowsHitTesting(false)
                     }
@@ -41,12 +41,7 @@ struct RootView: View {
                     }
                     ToolbarItem(placement: .principal) {
                         Menu {
-                            Text(text.count.formatted(singular: "character"))
-                            Text(text.words.formatted(singular: "word"))
-                            Divider()
-                            Button {
-                                showSharePopover.toggle()
-                            } label: {
+                            ShareLink(item: Constants.appURL) {
                                 Label("Share \(Constants.name)", systemImage: "square.and.arrow.up")
                             }
                             Button {
@@ -80,7 +75,6 @@ struct RootView: View {
                                 MenuChevron()
                             }
                         }
-                        .sharePopover(items: [Constants.appUrl], showsSharedAlert: true, isPresented: $showSharePopover)
                     }
                     ToolbarItem(placement: .primaryAction) {
                         Button("Paste") {
@@ -94,6 +88,5 @@ struct RootView: View {
             vm.objectWillChange.send()
         }
         .emailSheet(recipient: Constants.email, subject: "\(Constants.name) Feedback", isPresented: $showEmailSheet)
-        .navigationViewStyle(.stack)
     }
 }

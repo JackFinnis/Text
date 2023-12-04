@@ -11,6 +11,7 @@ struct TextView: UIViewRepresentable {
     @Binding var text: String
     
     let textView = UITextView()
+    @State var wordCount = UIBarButtonItem()
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -18,7 +19,7 @@ struct TextView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> UITextView {
         textView.delegate = context.coordinator
-        textView.textContainerInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+        textView.textContainerInset = UIEdgeInsets(top: Constants.verticalPadding, left: Constants.horizontalPadding, bottom: Constants.verticalPadding, right: Constants.horizontalPadding)
         textView.textContainer.lineFragmentPadding = 0
         textView.isUserInteractionEnabled = true
         textView.isScrollEnabled = true
@@ -30,11 +31,13 @@ struct TextView: UIViewRepresentable {
             .underlineStyle: CTUnderlineStyle.single.rawValue
         ]
         
-        let toolbar = UIToolbar()
         let clearButton = UIBarButtonItem(title: "Clear", style: .plain, target: context.coordinator, action: #selector(Coordinator.clearText))
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let dismissButton = UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.stopEditing))
-        toolbar.items = [clearButton, spacer, dismissButton]
+        wordCount.isEnabled = false
+        
+        let toolbar = UIToolbar()
+        toolbar.items = [clearButton, spacer, wordCount, spacer, dismissButton]
         toolbar.sizeToFit()
         textView.inputAccessoryView = toolbar
         
@@ -48,8 +51,10 @@ struct TextView: UIViewRepresentable {
     func updateUIView(_ textView: UITextView, context: Context) {
         textView.text = text
         textView.font = .preferredFont(forTextStyle: .body)
+        wordCount.title = text.count.formatted(singular: "char") + " • " + text.words.formatted(singular: "word")
     }
     
+    // MARK: - Coordinator
     class Coordinator: NSObject, UITextViewDelegate, UIGestureRecognizerDelegate {
         let parent: TextView
         
@@ -57,7 +62,6 @@ struct TextView: UIViewRepresentable {
             self.parent = parent
         }
         
-        // MARK: - UITextViewDelegate
         func textViewDidChange(_ textView: UITextView) {
             parent.text = textView.text
         }
@@ -73,7 +77,6 @@ struct TextView: UIViewRepresentable {
             textView.dataDetectorTypes = .all
         }
         
-        // MARK: - UIGestureRecognizerDelegate
         func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool { true }
         
         @objc
@@ -87,7 +90,7 @@ struct TextView: UIViewRepresentable {
                 let attributes = textView.attributedText.attributes(at: index, effectiveRange: nil)
                 guard attributes[.link] == nil else { return }
             }
-
+            
             textView.isEditable = true
             textView.becomeFirstResponder()
             textView.selectedTextRange = textView.textRange(from: position, to: position)
