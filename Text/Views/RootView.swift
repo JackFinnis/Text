@@ -7,8 +7,10 @@
 
 import SwiftUI
 import MessageUI
+import StoreKit
 
 struct RootView: View {
+    @Environment(\.requestReview) var requestReview
     @Environment(\.scenePhase) var scenePhase
     @AppStorage("text") var text = ""
     @State var showEmailSheet = false
@@ -42,7 +44,7 @@ struct RootView: View {
                                 Label("Share \(Constants.name)", systemImage: "square.and.arrow.up")
                             }
                             Button {
-                                Store.requestRating()
+                                requestReview()
                             } label: {
                                 Label("Rate \(Constants.name)", systemImage: "star")
                             }
