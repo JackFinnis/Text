@@ -20,6 +20,9 @@
 		0413DADA2999320A00A1624F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD92999320A00A1624F /* RootView.swift */; };
 		0413DADF2999324B00A1624F /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DADE2999324B00A1624F /* TextView.swift */; };
 		04265B7A29D0F75100D7B588 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04265B7929D0F75100D7B588 /* Haptics.swift */; };
+		04EEDB9C2B4321E400661CF7 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FEC9902A8C1CE80074EA5E /* String.swift */; };
+		04EEDB9D2B4321EA00661CF7 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD3299931BE00A1624F /* Collection.swift */; };
+		04EEDB9E2B4321F100661CF7 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD1299931B300A1624F /* Int.swift */; };
 		04FEC9842A8C19FE0074EA5E /* TextMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FEC9832A8C19FE0074EA5E /* TextMacApp.swift */; };
 		04FEC9882A8C19FF0074EA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04FEC9872A8C19FF0074EA5E /* Assets.xcassets */; };
 		04FEC9912A8C1CE80074EA5E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FEC9902A8C1CE80074EA5E /* String.swift */; };
@@ -270,7 +273,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04EEDB9D2B4321EA00661CF7 /* Collection.swift in Sources */,
+				04EEDB9C2B4321E400661CF7 /* String.swift in Sources */,
 				04FEC9842A8C19FE0074EA5E /* TextMacApp.swift in Sources */,
+				04EEDB9E2B4321F100661CF7 /* Int.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

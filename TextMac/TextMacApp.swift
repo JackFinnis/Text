@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct TextMacApp: App {
+    @NSApplicationDelegateAdaptor var appDelegate: AppDelegate
+    
     var body: some Scene {
         WindowGroup {
             RootView()
@@ -18,11 +20,15 @@ struct TextMacApp: App {
     }
 }
 
+class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { true }
+}
+
 // NSTextView NSViewRepresentable doesn't resize to window
 extension NSTextView {
     open override var frame: NSRect { didSet {
         textContainer?.lineFragmentPadding = 12
-        smartInsertDeleteEnabled = false
+        smartInsertDeleteEnabled = true
         isAutomaticDataDetectionEnabled = true
         isAutomaticLinkDetectionEnabled = true
         isAutomaticTextCompletionEnabled = true
@@ -30,6 +36,9 @@ extension NSTextView {
         isAutomaticDashSubstitutionEnabled = false
         isAutomaticQuoteSubstitutionEnabled = false
         isAutomaticSpellingCorrectionEnabled = true
+        isGrammarCheckingEnabled = true
+        isIncrementalSearchingEnabled = true
+        isContinuousSpellCheckingEnabled = true
     }}
 }
 
@@ -42,7 +51,8 @@ struct RootView: View {
             .font(.system(size: 15).monospaced())
             .toolbar {
                 ToolbarItem(placement: .status) {
-                    Spacer()
+                    Text(text.count.formatted(singular: "char") + " • " + text.words.formatted(singular: "word"))
+                        .foregroundStyle(.secondary)
                 }
             }
     }
