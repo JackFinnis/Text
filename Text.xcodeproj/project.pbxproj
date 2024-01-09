@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0402C65F2A13A31100238C51 /* MenuChevron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C65E2A13A31100238C51 /* MenuChevron.swift */; };
 		0402C6612A13A39E00238C51 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6602A13A39E00238C51 /* Storage.swift */; };
 		0402C6632A13A3AC00238C51 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6622A13A3AC00238C51 /* Store.swift */; };
 		0402C6652A13A3D700238C51 /* Emails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402C6642A13A3D700238C51 /* Emails.swift */; };
@@ -29,7 +28,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0402C65E2A13A31100238C51 /* MenuChevron.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuChevron.swift; sourceTree = "<group>"; };
 		0402C6602A13A39E00238C51 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		0402C6622A13A3AC00238C51 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		0402C6642A13A3D700238C51 /* Emails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emails.swift; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				0402C6682A13A40700238C51 /* EmailView.swift */,
-				0402C65E2A13A31100238C51 /* MenuChevron.swift */,
 			);
 			path = Extra;
 			sourceTree = "<group>";
@@ -255,7 +252,6 @@
 			files = (
 				0402C6632A13A3AC00238C51 /* Store.swift in Sources */,
 				0402C66B2A13A48700238C51 /* Constants.swift in Sources */,
-				0402C65F2A13A31100238C51 /* MenuChevron.swift in Sources */,
 				0402C6652A13A3D700238C51 /* Emails.swift in Sources */,
 				0402C6612A13A39E00238C51 /* Storage.swift in Sources */,
 				04265B7A29D0F75100D7B588 /* Haptics.swift in Sources */,

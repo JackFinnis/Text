@@ -28,7 +28,36 @@ struct RootView: View {
                             .allowsHitTesting(false)
                     }
                 }
+                .navigationTitle(Constants.name)
                 .navigationBarTitleDisplayMode(.inline)
+                .toolbarTitleMenu {
+                    ShareLink(item: Constants.appURL) {
+                        Label("Share \(Constants.name)", systemImage: "square.and.arrow.up")
+                    }
+                    Button {
+                        requestReview()
+                    } label: {
+                        Label("Rate \(Constants.name)", systemImage: "star")
+                    }
+                    Button {
+                        Store.writeReview()
+                    } label: {
+                        Label("Write a Review", systemImage: "quote.bubble")
+                    }
+                    if MFMailComposeViewController.canSendMail() {
+                        Button {
+                            showEmailSheet.toggle()
+                        } label: {
+                            Label("Send us Feedback", systemImage: "envelope")
+                        }
+                    } else if let url = Emails.url(subject: "\(Constants.name) Feedback"), UIApplication.shared.canOpenURL(url) {
+                        Button {
+                            UIApplication.shared.open(url)
+                        } label: {
+                            Label("Send us Feedback", systemImage: "envelope")
+                        }
+                    }
+                }
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Copy") {
@@ -37,43 +66,6 @@ struct RootView: View {
                             Haptics.tap()
                         }
                         .disabled(text.isEmpty)
-                    }
-                    ToolbarItem(placement: .principal) {
-                        Menu {
-                            ShareLink(item: Constants.appURL) {
-                                Label("Share \(Constants.name)", systemImage: "square.and.arrow.up")
-                            }
-                            Button {
-                                requestReview()
-                            } label: {
-                                Label("Rate \(Constants.name)", systemImage: "star")
-                            }
-                            Button {
-                                Store.writeReview()
-                            } label: {
-                                Label("Write a Review", systemImage: "quote.bubble")
-                            }
-                            if MFMailComposeViewController.canSendMail() {
-                                Button {
-                                    showEmailSheet.toggle()
-                                } label: {
-                                    Label("Send us Feedback", systemImage: "envelope")
-                                }
-                            } else if let url = Emails.url(subject: "\(Constants.name) Feedback"), UIApplication.shared.canOpenURL(url) {
-                                Button {
-                                    UIApplication.shared.open(url)
-                                } label: {
-                                    Label("Send us Feedback", systemImage: "envelope")
-                                }
-                            }
-                        } label: {
-                            HStack {
-                                Text(Constants.name)
-                                    .font(.headline)
-                                    .foregroundColor(.primary)
-                                MenuChevron()
-                            }
-                        }
                     }
                     ToolbarItem(placement: .primaryAction) {
                         Button("Paste") {
