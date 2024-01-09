@@ -30,10 +30,8 @@ struct RootView: View {
                 }
                 .navigationTitle(Constants.name)
                 .navigationBarTitleDisplayMode(.inline)
+                .navigationDocument(Constants.appURL, preview: SharePreview(Constants.name, image: Image(.logo)))
                 .toolbarTitleMenu {
-                    ShareLink(item: Constants.appURL) {
-                        Label("Share \(Constants.name)", systemImage: "square.and.arrow.up")
-                    }
                     Button {
                         requestReview()
                     } label: {
