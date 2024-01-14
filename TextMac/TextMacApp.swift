@@ -14,9 +14,15 @@ struct TextMacApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .onAppear {
+                    NSWindow.allowsAutomaticWindowTabbing = false
+                }
         }
         .windowStyle(.hiddenTitleBar)
         .defaultSize(width: 300, height: 200)
+        .commands {
+            CommandGroup(replacing: .help) {}
+        }
     }
 }
 
