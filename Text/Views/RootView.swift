@@ -16,6 +16,10 @@ struct RootView: View {
     @State var showEmailSheet = false
     @State var refresh = false
     
+    init() {
+        UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.roundedSystemFont(style: .headline)]
+    }
+    
     var body: some View {
         NavigationStack {
             TextView(text: $text)
@@ -38,7 +42,7 @@ struct RootView: View {
                         Label("Rate \(Constants.name)", systemImage: "star")
                     }
                     Button {
-                        Store.writeReview()
+                        AppStore.writeReview()
                     } label: {
                         Label("Write a Review", systemImage: "quote.bubble")
                     }
@@ -77,5 +81,10 @@ struct RootView: View {
             refresh.toggle()
         }
         .emailSheet(recipient: Constants.email, subject: "\(Constants.name) Feedback", isPresented: $showEmailSheet)
+        .fontDesign(.rounded)
     }
+}
+
+#Preview {
+    RootView()
 }

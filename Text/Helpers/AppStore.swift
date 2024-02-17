@@ -8,7 +8,7 @@
 import UIKit
 import StoreKit
 
-struct Store {
+struct AppStore {
     static func writeReview() {
         var components = URLComponents(url: Constants.appURL, resolvingAgainstBaseURL: false)
         components?.queryItems = [URLQueryItem(name: "action", value: "write-review")]

@@ -7,19 +7,9 @@
 
 import SwiftUI
 
-extension UIFont {
-    class func roundedSystemFont(ofSize size: CGFloat, weight: UIFont.Weight = .regular) -> UIFont {
-        let systemFont = UIFont.systemFont(ofSize: size, weight: weight)
-        guard let descriptor = systemFont.fontDescriptor.withDesign(.rounded) else { return systemFont }
-        return UIFont(descriptor: descriptor, size: size)
-    }
-}
-
 struct TextView: UIViewRepresentable {
-    let textView = UITextView()
-    let font = UIFont.roundedSystemFont(ofSize: UIFont.labelFontSize)
-    let boldFont = UIFont.roundedSystemFont(ofSize: UIFont.labelFontSize, weight: .semibold)
     @State var wordCount = UIBarButtonItem()
+    let textView = UITextView()
     
     @Binding var text: String
     
@@ -45,12 +35,12 @@ struct TextView: UIViewRepresentable {
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let dismissButton = UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.stopEditing))
         
-        wordCount.isEnabled = false
-        wordCount.setTitleTextAttributes([.font: font], for: .normal)
-        clearButton.setTitleTextAttributes([.font: font], for: .normal)
-        clearButton.setTitleTextAttributes([.font: font], for: .selected)
-        dismissButton.setTitleTextAttributes([.font: boldFont], for: .normal)
-        dismissButton.setTitleTextAttributes([.font: boldFont], for: .selected)
+        wordCount.tintColor = .secondaryLabel
+        wordCount.setTitleTextAttributes([.font: UIFont.roundedSystemFont(style: .subheadline)], for: .normal)
+        clearButton.setTitleTextAttributes([.font: UIFont.roundedSystemFont(style: .body)], for: .normal)
+        clearButton.setTitleTextAttributes([.font: UIFont.roundedSystemFont(style: .body)], for: .selected)
+        dismissButton.setTitleTextAttributes([.font: UIFont.roundedSystemFont(style: .headline)], for: .normal)
+        dismissButton.setTitleTextAttributes([.font: UIFont.roundedSystemFont(style: .headline)], for: .selected)
         
         let toolbar = UIToolbar()
         toolbar.items = [clearButton, spacer, wordCount, spacer, dismissButton]
@@ -66,7 +56,7 @@ struct TextView: UIViewRepresentable {
     
     func updateUIView(_ textView: UITextView, context: Context) {
         textView.text = text
-        textView.font = font
+        textView.font = UIFont.roundedSystemFont(style: .body)
         wordCount.title = text.count.formatted(singular: "char") + " • " + text.words.formatted(singular: "word")
     }
     
@@ -122,4 +112,8 @@ struct TextView: UIViewRepresentable {
             parent.textView.resignFirstResponder()
         }
     }
+}
+
+#Preview {
+    RootView()
 }
