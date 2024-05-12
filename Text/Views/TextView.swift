@@ -36,11 +36,11 @@ struct TextView: UIViewRepresentable {
         let dismissButton = UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.stopEditing))
         
         wordCount.tintColor = .secondaryLabel
-        wordCount.setTitleTextAttributes([.font: UIFont.roundedSystemFont(style: .subheadline)], for: .normal)
-        clearButton.setTitleTextAttributes([.font: UIFont.roundedSystemFont(style: .body)], for: .normal)
-        clearButton.setTitleTextAttributes([.font: UIFont.roundedSystemFont(style: .body)], for: .selected)
-        dismissButton.setTitleTextAttributes([.font: UIFont.roundedSystemFont(style: .headline)], for: .normal)
-        dismissButton.setTitleTextAttributes([.font: UIFont.roundedSystemFont(style: .headline)], for: .selected)
+        wordCount.setTitleTextAttributes([.font: UIFont.systemFont(.subheadline, design: .rounded)], for: .normal)
+        clearButton.setTitleTextAttributes([.font: UIFont.systemFont(.body, design: .rounded)], for: .normal)
+        clearButton.setTitleTextAttributes([.font: UIFont.systemFont(.body, design: .rounded)], for: .selected)
+        dismissButton.setTitleTextAttributes([.font: UIFont.systemFont(.headline, weight: .semibold, design: .rounded)], for: .normal)
+        dismissButton.setTitleTextAttributes([.font: UIFont.systemFont(.headline, weight: .semibold, design: .rounded)], for: .selected)
         
         let toolbar = UIToolbar()
         toolbar.items = [clearButton, spacer, wordCount, spacer, dismissButton]
@@ -56,7 +56,7 @@ struct TextView: UIViewRepresentable {
     
     func updateUIView(_ textView: UITextView, context: Context) {
         textView.text = text
-        textView.font = UIFont.roundedSystemFont(style: .body)
+        textView.font = UIFont.systemFont(.body, design: .rounded)
         wordCount.title = text.count.formatted(singular: "char") + " • " + text.words.formatted(singular: "word")
     }
     

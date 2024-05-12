@@ -8,8 +8,8 @@
 import UIKit
 
 extension UIFont {
-    class func roundedSystemFont(style: TextStyle) -> UIFont {
-        let descriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style).withDesign(.rounded)!
+    class func systemFont(_ style: TextStyle = .body, weight: UIFont.Weight = .regular, design: UIFontDescriptor.SystemDesign = .default) -> UIFont {
+        let descriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style).withDesign(design)!.addingAttributes([.traits : [UIFontDescriptor.TraitKey.weight : weight]])
         return UIFont(descriptor: descriptor, size: descriptor.pointSize)
     }
 }

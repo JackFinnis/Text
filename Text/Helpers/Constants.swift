@@ -9,8 +9,6 @@ import Foundation
 
 struct Constants {
     static let name = "Notepad"
-    static let email = "jack.finnis@icloud.com"
-    static let appURL = URL(string: "https://apps.apple.com/app/id6458223059")!
     static let verticalPadding = 8.0
     static let horizontalPadding = 16.0
     static let welcomeMessage = """

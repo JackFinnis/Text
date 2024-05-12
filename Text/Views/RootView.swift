@@ -17,7 +17,7 @@ struct RootView: View {
     @State var refresh = false
     
     init() {
-        UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.roundedSystemFont(style: .headline)]
+        UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.systemFont(.body, weight: .semibold, design: .rounded)]
     }
     
     var body: some View {
@@ -34,32 +34,6 @@ struct RootView: View {
                 }
                 .navigationTitle(Constants.name)
                 .navigationBarTitleDisplayMode(.inline)
-                .navigationDocument(Constants.appURL, preview: SharePreview(Constants.name, image: Image(.logo)))
-                .toolbarTitleMenu {
-                    Button {
-                        requestReview()
-                    } label: {
-                        Label("Rate \(Constants.name)", systemImage: "star")
-                    }
-                    Button {
-                        AppStore.writeReview()
-                    } label: {
-                        Label("Write a Review", systemImage: "quote.bubble")
-                    }
-                    if MFMailComposeViewController.canSendMail() {
-                        Button {
-                            showEmailSheet.toggle()
-                        } label: {
-                            Label("Send us Feedback", systemImage: "envelope")
-                        }
-                    } else if let url = Emails.url(subject: "\(Constants.name) Feedback"), UIApplication.shared.canOpenURL(url) {
-                        Button {
-                            UIApplication.shared.open(url)
-                        } label: {
-                            Label("Send us Feedback", systemImage: "envelope")
-                        }
-                    }
-                }
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Copy") {
@@ -80,7 +54,6 @@ struct RootView: View {
         .onChange(of: scenePhase) { _, _ in
             refresh.toggle()
         }
-        .emailSheet(recipient: Constants.email, subject: "\(Constants.name) Feedback", isPresented: $showEmailSheet)
         .fontDesign(.rounded)
     }
 }
