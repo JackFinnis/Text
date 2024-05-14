@@ -38,7 +38,6 @@ struct RootView: View {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Copy") {
                             UIPasteboard.general.string = text
-                            refresh.toggle()
                             Haptics.tap()
                         }
                         .disabled(text.isEmpty)
@@ -51,10 +50,10 @@ struct RootView: View {
                     }
                 }
         }
-        .onChange(of: scenePhase) { _, _ in
+        .fontDesign(.rounded)
+        .onReceive(NotificationCenter.default.publisher(for: UIPasteboard.changedNotification)) { _ in
             refresh.toggle()
         }
-        .fontDesign(.rounded)
     }
 }
 
