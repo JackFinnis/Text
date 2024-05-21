@@ -10,10 +10,7 @@ import MessageUI
 import StoreKit
 
 struct RootView: View {
-    @Environment(\.requestReview) var requestReview
-    @Environment(\.scenePhase) var scenePhase
     @AppStorage("text") var text = ""
-    @State var showEmailSheet = false
     @State var refresh = false
     
     init() {

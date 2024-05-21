@@ -19,6 +19,7 @@ struct TextView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> UITextView {
         textView.delegate = context.coordinator
+        textView.font = UIFont.systemFont(.body, design: .rounded)
         textView.textContainerInset = UIEdgeInsets(top: Constants.verticalPadding, left: Constants.horizontalPadding, bottom: Constants.verticalPadding, right: Constants.horizontalPadding)
         textView.textContainer.lineFragmentPadding = 0
         textView.isUserInteractionEnabled = true
@@ -31,7 +32,7 @@ struct TextView: UIViewRepresentable {
             .underlineStyle: CTUnderlineStyle.single.rawValue
         ]
         
-        let clearButton = UIBarButtonItem(title: "Clear", style: .plain, target: context.coordinator, action: #selector(Coordinator.clearText))
+        let clearButton = UIBarButtonItem(title: "Clear", style: .plain, target: context.coordinator, action: #selector(Coordinator.clear))
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let dismissButton = UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.stopEditing))
         
@@ -56,7 +57,6 @@ struct TextView: UIViewRepresentable {
     
     func updateUIView(_ textView: UITextView, context: Context) {
         textView.text = text
-        textView.font = UIFont.systemFont(.body, design: .rounded)
         wordCount.title = text.count.formatted(singular: "char") + " • " + text.words.formatted(singular: "word")
     }
     
@@ -72,18 +72,14 @@ struct TextView: UIViewRepresentable {
             parent.text = textView.text
         }
         
-        func textViewDidBeginEditing(_ textView: UITextView) {
-            if parent.text == Constants.welcomeMessage {
-                parent.text = ""
-            }
-        }
-        
         func textViewDidEndEditing(_ textView: UITextView) {
             textView.isEditable = false
             textView.dataDetectorTypes = .all
         }
         
-        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool { true }
+        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+            true
+        }
         
         @objc
         func handleTap(_ tap: UITapGestureRecognizer) {
@@ -103,7 +99,7 @@ struct TextView: UIViewRepresentable {
         }
         
         @objc
-        func clearText() {
+        func clear() {
             parent.text = ""
         }
         
