@@ -20,15 +20,6 @@ struct RootView: View {
     var body: some View {
         NavigationStack {
             TextView(text: $text)
-                .overlay(alignment: .topLeading) {
-                    if text.isEmpty {
-                        Text(Constants.welcomeMessage)
-                            .padding(.vertical, Constants.verticalPadding)
-                            .padding(.horizontal, Constants.horizontalPadding)
-                            .foregroundColor(Color(.placeholderText))
-                            .allowsHitTesting(false)
-                    }
-                }
                 .navigationTitle(Constants.name)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -44,6 +35,7 @@ struct RootView: View {
                             text = UIPasteboard.general.string ?? ""
                         }
                         .disabled(!UIPasteboard.general.hasStrings)
+                        .id(refresh)
                     }
                 }
         }
