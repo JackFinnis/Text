@@ -46,7 +46,9 @@ struct TextView: UIViewRepresentable {
         let toolbar = UIToolbar()
         toolbar.items = [clearButton, spacer, wordCount, spacer, dismissButton]
         toolbar.sizeToFit()
+        #if os(iOS)
         textView.inputAccessoryView = toolbar
+        #endif
         
         let tapGesture = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap))
         tapGesture.delegate = context.coordinator

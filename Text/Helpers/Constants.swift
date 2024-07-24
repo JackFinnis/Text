@@ -9,8 +9,13 @@ import Foundation
 
 struct Constants {
     static let name = "Notepad"
+    #if os(iOS)
     static let verticalPadding = 8.0
     static let horizontalPadding = 16.0
+    #elseif os(visionOS)
+    static let verticalPadding = 0.0
+    static let horizontalPadding = 25.0
+    #endif
     static let welcomeMessage = """
 Jot down ideas
 Save important links
