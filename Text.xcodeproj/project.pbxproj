@@ -13,7 +13,6 @@
 		0413DAD4299931BE00A1624F /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD3299931BE00A1624F /* Collection.swift */; };
 		0413DADA2999320A00A1624F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DAD92999320A00A1624F /* RootView.swift */; };
 		0413DADF2999324B00A1624F /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413DADE2999324B00A1624F /* TextView.swift */; };
-		04265B7A29D0F75100D7B588 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04265B7929D0F75100D7B588 /* Haptics.swift */; };
 		04496CF52B4DA2CB003F0AF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0413DAC82999048600A1624F /* Assets.xcassets */; };
 		045B92F52B803254002ED01B /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B92F42B803254002ED01B /* UIFont.swift */; };
 		04E1E8B02BF101460000D338 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E1E8AF2BF101460000D338 /* Constants.swift */; };
@@ -33,7 +32,6 @@
 		0413DAD3299931BE00A1624F /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		0413DAD92999320A00A1624F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		0413DADE2999324B00A1624F /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
-		04265B7929D0F75100D7B588 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		045B92F42B803254002ED01B /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		04E1E8AF2BF101460000D338 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		04FEC9812A8C19FE0074EA5E /* Notepad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notepad.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				04E1E8AF2BF101460000D338 /* Constants.swift */,
-				04265B7929D0F75100D7B588 /* Haptics.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -235,7 +232,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04265B7A29D0F75100D7B588 /* Haptics.swift in Sources */,
 				0413DAD4299931BE00A1624F /* Collection.swift in Sources */,
 				0413DADF2999324B00A1624F /* TextView.swift in Sources */,
 				04FEC9912A8C1CE80074EA5E /* String.swift in Sources */,

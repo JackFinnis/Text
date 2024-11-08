@@ -20,7 +20,7 @@ struct RootView: View {
     var body: some View {
         NavigationStack {
             TextView(text: $text)
-                .navigationTitle(Constants.name)
+                .navigationTitle("Notepad")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
