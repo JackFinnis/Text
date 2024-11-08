@@ -26,7 +26,6 @@ struct RootView: View {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Copy") {
                             UIPasteboard.general.string = text
-                            Haptics.tap()
                         }
                         .disabled(text.isEmpty)
                     }
