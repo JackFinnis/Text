@@ -13,6 +13,5 @@ struct TextApp: App {
         WindowGroup {
             RootView()
         }
-        .defaultSize(width: 500, height: 400)
     }
 }
