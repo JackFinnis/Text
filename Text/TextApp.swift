@@ -1,11 +1,89 @@
 //
-//  TextView.swift
+//  TextApp.swift
 //  Text
 //
-//  Created by Jack Finnis on 12/02/2023.
+//  Created by Jack Finnis on 28/08/2022.
 //
 
 import SwiftUI
+
+@main
+struct TextApp: App {
+    var body: some Scene {
+        WindowGroup {
+            RootView()
+        }
+        .windowStyle(.hiddenTitleBar)
+        .defaultSize(width: 300, height: 200)
+    }
+}
+
+#if os(macOS)
+struct RootView: View {
+    @State var text = ""
+    
+    var body: some View {
+        TextEditor(text: $text)
+            .scrollContentBackground(.hidden)
+            .font(.system(size: 15).monospaced())
+    }
+}
+
+extension NSTextView {
+    open override var frame: NSRect { didSet {
+        textContainer?.lineFragmentPadding = 8
+        smartInsertDeleteEnabled = true
+        isAutomaticDataDetectionEnabled = true
+        isAutomaticLinkDetectionEnabled = true
+        isAutomaticTextCompletionEnabled = true
+        isAutomaticTextReplacementEnabled = true
+        isAutomaticDashSubstitutionEnabled = false
+        isAutomaticQuoteSubstitutionEnabled = false
+        isAutomaticSpellingCorrectionEnabled = true
+        isGrammarCheckingEnabled = true
+        isIncrementalSearchingEnabled = true
+        isContinuousSpellCheckingEnabled = true
+    }}
+}
+#else
+import MessageUI
+import StoreKit
+
+struct RootView: View {
+    @AppStorage("text") var text = ""
+    @State var refresh = false
+    
+    init() {
+        UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.systemFont(.body, weight: .semibold, design: .rounded)]
+    }
+    
+    var body: some View {
+        NavigationStack {
+            TextView(text: $text)
+                .navigationTitle("Notepad")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Copy") {
+                            UIPasteboard.general.string = text
+                        }
+                        .disabled(text.isEmpty)
+                    }
+                    ToolbarItem(placement: .primaryAction) {
+                        Button("Paste") {
+                            text = UIPasteboard.general.string ?? ""
+                        }
+                        .disabled(!UIPasteboard.general.hasStrings)
+                        .id(refresh)
+                    }
+                }
+        }
+        .fontDesign(.rounded)
+        .onReceive(NotificationCenter.default.publisher(for: UIPasteboard.changedNotification)) { _ in
+            refresh.toggle()
+        }
+    }
+}
 
 struct TextView: UIViewRepresentable {
     @State var wordCount = UIBarButtonItem()
@@ -18,6 +96,14 @@ struct TextView: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> UITextView {
+#if os(iOS)
+        let verticalPadding = 8.0
+        let horizontalPadding = 16.0
+#elseif os(visionOS)
+        let verticalPadding = 0.0
+        let horizontalPadding = 25.0
+#endif
+        
         textView.delegate = context.coordinator
         textView.font = UIFont.systemFont(.body, design: .rounded)
         textView.textContainerInset = UIEdgeInsets(top: Constants.verticalPadding, left: Constants.horizontalPadding, bottom: Constants.verticalPadding, right: Constants.horizontalPadding)
@@ -46,9 +132,9 @@ struct TextView: UIViewRepresentable {
         let toolbar = UIToolbar()
         toolbar.items = [clearButton, spacer, wordCount, spacer, dismissButton]
         toolbar.sizeToFit()
-        #if os(iOS)
+#if os(iOS)
         textView.inputAccessoryView = toolbar
-        #endif
+#endif
         
         let tapGesture = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap))
         tapGesture.delegate = context.coordinator
@@ -112,6 +198,30 @@ struct TextView: UIViewRepresentable {
     }
 }
 
+extension UIFont {
+    class func systemFont(_ style: TextStyle = .body, weight: UIFont.Weight = .regular, design: UIFontDescriptor.SystemDesign = .default) -> UIFont {
+        let descriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style).withDesign(design)!.addingAttributes([.traits : [UIFontDescriptor.TraitKey.weight : weight]])
+        return UIFont(descriptor: descriptor, size: descriptor.pointSize)
+    }
+}
+
 #Preview {
     RootView()
+}
+#endif
+
+extension String {
+    var words: Int {
+        split { !$0.isLetter }.filter(\.isNotEmpty).count
+    }
+}
+
+extension Int {
+    func formatted(singular word: String) -> String {
+        "\(self) " + word + (self == 1 ? "" : "s")
+    }
+}
+
+extension Collection {
+    var isNotEmpty: Bool { !isEmpty }
 }
