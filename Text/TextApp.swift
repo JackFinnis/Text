@@ -13,8 +13,10 @@ struct TextApp: App {
         WindowGroup {
             RootView()
         }
+        #if os(visionOS)
         .windowStyle(.hiddenTitleBar)
         .defaultSize(width: 300, height: 200)
+        #endif
     }
 }
 
@@ -106,7 +108,7 @@ struct TextView: UIViewRepresentable {
         
         textView.delegate = context.coordinator
         textView.font = UIFont.systemFont(.body, design: .rounded)
-        textView.textContainerInset = UIEdgeInsets(top: Constants.verticalPadding, left: Constants.horizontalPadding, bottom: Constants.verticalPadding, right: Constants.horizontalPadding)
+        textView.textContainerInset = UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: verticalPadding, right: horizontalPadding)
         textView.textContainer.lineFragmentPadding = 0
         textView.isUserInteractionEnabled = true
         textView.isScrollEnabled = true
