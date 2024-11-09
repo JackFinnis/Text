@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0413DAC12999048500A1624F"
-               BuildableName = "Text.app"
+               BuildableName = "Notepad.app"
                BlueprintName = "Text"
                ReferencedContainer = "container:Text.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0413DAC12999048500A1624F"
-            BuildableName = "Text.app"
+            BuildableName = "Notepad.app"
             BlueprintName = "Text"
             ReferencedContainer = "container:Text.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0413DAC12999048500A1624F"
-            BuildableName = "Text.app"
+            BuildableName = "Notepad.app"
             BlueprintName = "Text"
             ReferencedContainer = "container:Text.xcodeproj">
          </BuildableReference>
