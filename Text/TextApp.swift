@@ -9,14 +9,24 @@ import SwiftUI
 
 @main
 struct TextApp: App {
+    @Environment(\.openWindow) var openWindow
+    
     var body: some Scene {
-        WindowGroup {
+        WindowGroup(id: "Notepad") {
             RootView()
         }
-        #if os(visionOS)
-        .windowStyle(.hiddenTitleBar)
-        .defaultSize(width: 300, height: 200)
+        #if os(visionOS) || os(macOS)
+        .defaultSize(width: 400, height: 300)
         #endif
+        .windowStyle(.hiddenTitleBar)
+        .commandsReplaced {
+            CommandGroup(replacing: .newItem) {
+                Button("New Notepad") {
+                    openWindow(id: "Notepad")
+                }
+                .keyboardShortcut("n", modifiers: .command)
+            }
+        }
     }
 }
 
@@ -28,6 +38,9 @@ struct RootView: View {
         TextEditor(text: $text)
             .scrollContentBackground(.hidden)
             .font(.system(size: 15).monospaced())
+            .onAppear {
+                NSWindow.allowsAutomaticWindowTabbing = false
+            }
     }
 }
 
@@ -48,6 +61,7 @@ extension NSTextView {
     }}
 }
 #else
+
 import MessageUI
 import StoreKit
 
